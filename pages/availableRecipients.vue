@@ -1,14 +1,23 @@
 <template>
   <v-container>
     <h1>Children of Kind Organization</h1>
+    <!-- {{ children }} -->
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Placerat orci nulla
       pellentesque dignissim enim sit.
     </p>
+
+    <v-text-field
+      filled
+      rounded
+      class="mx-15"
+      prepend-inner-icon="fas fa-search"
+    ></v-text-field>
+
     <!-- Data iterator -->
     <v-data-iterator
-      :items="items"
+      :items="children"
       :items-per-page.sync="itemsPerPage"
       :page.sync="page"
       :search="search"
@@ -17,17 +26,18 @@
       hide-default-footer
     >
       <template v-slot:header>
-        <v-toolbar dark color="blue darken-3" class="mb-1">
+        <v-toolbar rounded class="ma-3 mb-6">
           <v-text-field
-            v-model="sortBy"
+            v-model="search"
             clearable
-            flat
-            solo-inverted
+            dense
+            rounded
+            filled
             hide-details
-            prepend-inner-icon="mdi-magnify"
-            label="Search by name"
+            prepend-inner-icon="fas fa-search"
+            label="Search name, country, age"
           ></v-text-field>
-          <template v-if="$vuetify.breakpoint.mdAndUp">
+          <!-- <template v-if="$vuetify.breakpoint.mdAndUp">
             <v-spacer></v-spacer>
             <v-autocomplete
               v-model="items"
@@ -65,7 +75,7 @@
                 <v-icon>mdi-arrow-down</v-icon>
               </v-btn>
             </v-btn-toggle>
-          </template>
+          </template> -->
         </v-toolbar>
       </template>
 
@@ -75,9 +85,9 @@
         <v-layout row wrap>
           <v-flex
             v-for="item in props.items"
-            :key="item.name"
+            :key="item.id"
             xl3
-            lg3
+            lg4
             md4
             sm6
             xs12
@@ -87,11 +97,14 @@
                 max-height="150"
                 src="https://picsum.photos/id/11/500/300"
               />
-              <v-card-title>{{ item.name }}</v-card-title>
+              <v-card-title
+                >{{ item.first_name }} {{ item.last_name }}</v-card-title
+              >
               <v-list dense>
                 <v-list-item v-for="(key, index) in filteredKeys" :key="index">
                   <v-list-item-content
                     :class="{ 'blue--text': sortBy === key }"
+                    class="text-capitalize"
                   >
                     {{ key }}:
                   </v-list-item-content>
@@ -115,8 +128,8 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-list-group>
-                <v-btn class="primary mx-9 my-4">Watch Video 📹 </v-btn>
-                <v-btn>Sponsor 💞</v-btn>
+              <v-btn class="primary ma-3">Watch Video 📹 </v-btn>
+              <v-btn>Sponsor 💞</v-btn>
             </v-card>
           </v-flex>
         </v-layout>
@@ -131,13 +144,14 @@ export default {
   data() {
     return {
       itemsPerPageArray: [4, 8, 12],
+      children: [],
       search: '',
       filter: {},
       sortDesc: false,
       page: 1,
-      itemsPerPage: 4,
+      itemsPerPage: 1000,
       sortBy: 'name',
-      keys: ['Age', 'Origin', 'Hobby', 'Gender'],
+      keys: ['age', 'country', 'hobby', 'gender'],
       genderFilterKeys: ['Female', 'Male'],
       countryFilterKeys: ['Syria', 'Lybia'],
       items: [
@@ -173,6 +187,14 @@ export default {
           medical_note: '',
           gender: 'Male',
         },
+        {
+          name: 'Theo',
+          age: 8,
+          origin: 'Syria',
+          hobby: 'Dancing',
+          medical_note: '',
+          gender: 'Male',
+        },
       ],
     }
   },
@@ -194,6 +216,21 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number
     },
+  },
+  mounted() {
+    // children() {
+    var child_coll = this.$fire.firestore.collection('children')
+    child_coll
+      .limit(5)
+      .get()
+      .then((res) => {
+        this.children = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // return children
+    // },
   },
 }
 </script>

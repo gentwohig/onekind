@@ -2,6 +2,8 @@
   <v-container fluid>
     <h1>User Dashboard</h1>
     <br />
+    {{ children }}
+    <v-btn @click="addchildren()">click</v-btn>
     <!-- Avatar and user progress -->
     <v-layout row wrap>
       <v-flex lg9 class="yellow">
@@ -29,10 +31,26 @@
 </template>
 
 <script>
-import taskCard from '~/components/taskCard.vue'
-import UserProgress from '~/components/UserProgress.vue'
+// import taskCard from '~/components/taskCard.vue'
+// import UserProgress from '~/components/UserProgress.vue'
 export default {
-  components: { taskCard, UserProgress },
   layout: 'userDashboard',
+  data: () => ({
+    children: [],
+  }),
+  mounted() {
+    // children() {
+    var child_coll = this.$fire.firestore.collection('children')
+    child_coll
+      .get()
+      .then((res) => {
+        this.children = res.docs.map((doc) => doc.data())
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // return children
+    // },
+  },
 }
 </script>
