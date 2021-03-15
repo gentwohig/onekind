@@ -97,9 +97,9 @@
                 max-height="150"
                 src="https://picsum.photos/id/11/500/300"
               />
-              <v-card-title
-                >{{ item.first_name }} {{ item.last_name }}</v-card-title
-              >
+              <v-card-title>
+                {{ item.first_name }} {{ item.last_name }}
+              </v-card-title>
               <v-list dense>
                 <v-list-item v-for="(key, index) in filteredKeys" :key="index">
                   <v-list-item-content
@@ -128,21 +128,53 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-list-group>
-              <v-btn class="primary ma-3">Watch Video 📹 </v-btn>
-              <v-btn>Sponsor 💞</v-btn>
+              <v-btn class="primary mb-3 mx-3">Watch Video 📹 </v-btn>
+              <v-btn class="mb-3 ml-1" @click="dialog = item">
+                Sponsor 💞
+              </v-btn>
             </v-card>
           </v-flex>
         </v-layout>
       </template>
     </v-data-iterator>
+    <v-dialog :value="dialog" width="500">
+      <v-card>
+        <v-card-title class="headline grey lighten-2">
+          Privacy Policy
+        </v-card-title>
+
+        <v-card-text>
+          {{ dialog }}
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <!-- <v-btn color="primary" text @click=""> I accept </v-btn> -->
+          <v-btn color="primary" text> I accept </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import DATA from '../MOCK_DATA.json'
 export default {
   layout: 'availableRecipients',
   data() {
     return {
+      DATA,
       itemsPerPageArray: [4, 8, 12],
       children: [],
       search: '',
@@ -154,6 +186,7 @@ export default {
       keys: ['age', 'country', 'hobby', 'gender'],
       genderFilterKeys: ['Female', 'Male'],
       countryFilterKeys: ['Syria', 'Lybia'],
+      dialog: null,
       items: [
         {
           name: 'Genevieve',
@@ -205,6 +238,7 @@ export default {
     filteredKeys() {
       return this.keys.filter((key) => key !== 'Name')
     },
+    ...mapState(['user']),
   },
   methods: {
     nextPage() {
@@ -216,6 +250,20 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number
     },
+    async addChild() {
+      // logic for adding child to user
+      await this.$fire.firestore
+        .collection('users')
+        .doc(this.user.uid)
+        .collection('sponsored_children')
+        .add(this.child)
+      this.$router.push('/userDashboard')
+    },
+    // addchildren() {
+    //   this.DATA.forEach((item) => {
+    //     this.$fire.firestore.collection('children').add(item)
+    //   })
+    // },
   },
   mounted() {
     // children() {

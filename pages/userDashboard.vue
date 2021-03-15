@@ -2,7 +2,6 @@
   <v-container fluid>
     <h1>User Dashboard</h1>
     <br />
-    {{ children }}
     <v-btn @click="addchildren()">click</v-btn>
     <!-- Avatar and user progress -->
     <v-layout row wrap>
