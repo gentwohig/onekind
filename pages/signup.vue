@@ -3,12 +3,13 @@
     <h2>Create an account</h2>
     <v-card-subtitle>
       Already have an account?
-      <span
+      <v-btn
         class="blue--text text-decoration-underline"
         style="cursor: pointer"
+        to="/signin"
       >
         Sign in
-      </span>
+      </v-btn>
     </v-card-subtitle>
     <v-form ref="signup" @submit.prevent="signup">
       <v-container>

@@ -1,9 +1,10 @@
 export default {
   onAuthStateChangedAction({ commit }, { authUser, claims }) {
     if (!authUser) {
-      console.log('heer')
+      // console.log('heer')
       // claims = null
       // perform logout operations
+      this.$router.push("/signup")
     } else {
       this.$fire.firestore
         .collection('users')

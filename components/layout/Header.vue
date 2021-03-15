@@ -34,9 +34,9 @@
       <v-btn text class="black--text" v-if="collapseOnScroll == false"
         >Dashboard</v-btn
       >
-      <v-btn text class="black--text" v-if="collapseOnScroll == false"
-        >Sign out</v-btn
-      >
+      <v-btn text class="black--text" v-if="collapseOnScroll == false" @click="signOut">
+        Sign out
+      </v-btn>
     </v-app-bar>
   </div>
 </template>
@@ -66,5 +66,10 @@ export default {
       title: 'OneKind',
     }
   },
+  methods: {
+    signOut() {
+      this.$fire.auth.signOut()
+    }
+  }
 }
 </script>

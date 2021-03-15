@@ -92,11 +92,13 @@
             sm6
             xs12
           >
-            <v-card class="ma-3">
-              <v-img
-                max-height="150"
-                src="https://picsum.photos/id/11/500/300"
-              />
+            <v-card class="ma-3" elevation="3">
+              <v-card flat class="pa-4">
+                <v-img
+                  max-height="300"
+                  :src="item.imageName"
+                />
+              </v-card>
               <v-card-title>
                 {{ item.first_name }} {{ item.last_name }}
               </v-card-title>
@@ -159,8 +161,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <!-- <v-btn color="primary" text @click=""> I accept </v-btn> -->
-          <v-btn color="primary" text> I accept </v-btn>
+          <v-btn color="primary" text @click="addChild"> I accept </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -187,48 +188,6 @@ export default {
       genderFilterKeys: ['Female', 'Male'],
       countryFilterKeys: ['Syria', 'Lybia'],
       dialog: null,
-      items: [
-        {
-          name: 'Genevieve',
-          age: 5,
-          origin: 'Syria',
-          hobby: 'Drawing',
-          medical_note: 'Deaf',
-          gender: 'Female',
-        },
-        {
-          name: 'Mayar',
-          age: 6,
-          origin: 'Lybia',
-          hobby: 'Soccor',
-          medical_note: '',
-          gender: 'Male',
-        },
-        {
-          name: 'Angela',
-          age: 8,
-          origin: 'Lybia',
-          hobby: 'Dancing',
-          medical_note: '',
-          gender: 'Female',
-        },
-        {
-          name: 'Theo',
-          age: 8,
-          origin: 'Syria',
-          hobby: 'Dancing',
-          medical_note: '',
-          gender: 'Male',
-        },
-        {
-          name: 'Theo',
-          age: 8,
-          origin: 'Syria',
-          hobby: 'Dancing',
-          medical_note: '',
-          gender: 'Male',
-        },
-      ],
     }
   },
   computed: {
@@ -259,6 +218,18 @@ export default {
         .add(this.child)
       this.$router.push('/userDashboard')
     },
+    async addChild2() {
+      // try {
+      await this.$fire.firestore
+        .collection('users')
+        .doc(this.user.uid)
+        console.log(this.user)
+        console.log(this.user.uid)
+
+      // } catch(e) {
+      //   console.log(e)
+      // }
+    }
     // addchildren() {
     //   this.DATA.forEach((item) => {
     //     this.$fire.firestore.collection('children').add(item)
