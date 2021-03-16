@@ -130,8 +130,8 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-list-group>
-              <v-btn class="primary mb-3 mx-3">Watch Video 📹 </v-btn>
-              <v-btn class="mb-3 ml-1" @click="dialog = item">
+              <v-btn rounded class="primary mb-3 mx-3">Watch Video 📹 </v-btn>
+              <v-btn outlined rounded class="mb-3 ml-1" @click="dialog = item">
                 Sponsor 💞
               </v-btn>
             </v-card>
@@ -161,7 +161,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="addChild"> I accept </v-btn>
+          <v-btn color="primary" text @click="addChild(dialog)"> I accept </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -209,13 +209,13 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number
     },
-    async addChild() {
+    async addChild(child) {
       // logic for adding child to user
       await this.$fire.firestore
         .collection('users')
         .doc(this.user.uid)
-        .collection('sponsored_children')
-        .add(this.child)
+        .collection('users_sponsored_children')
+        .add(child)
       this.$router.push('/userDashboard')
     },
     async addChild2() {
