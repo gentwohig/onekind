@@ -161,7 +161,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="addChild(dialog)"> I accept </v-btn>
+          <v-btn color="primary" text @click="addChild"> I accept </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -209,14 +209,34 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number
     },
-    async addChild(child) {
+    async addChild() {
       // logic for adding child to user
-      await this.$fire.firestore
-        .collection('users')
-        .doc(this.user.uid)
-        .collection('users_sponsored_children')
-        .add(child)
-      this.$router.push('/userDashboard')
+      try {
+        if(this.user.children) {
+          await this.$fire.firestore
+          .collection('users')
+          .doc(this.user.uid)
+          .update({
+            children: this.$fireModule.firestore.FieldValue.arrayUnion(this.dialog.id)
+          })
+         
+        } else {
+           await this.$fire.firestore
+          .collection('users')
+          .doc(this.user.uid)
+          .set({
+            children: [this.dialog.id]
+          }, { merge: true })
+        }
+         
+        await this.$fire.firestore.collection('children').doc(this.dialog.id).update({ status: true })
+        this.$router.push('/userDashboard')
+      } catch (error) {
+        console.log(error)
+      }
+     
+        
+        // console.log(this.dialog.status)
     },
     async addChild2() {
       // try {
@@ -241,6 +261,7 @@ export default {
     var child_coll = this.$fire.firestore.collection('children')
     child_coll
       .limit(5)
+      .where("status", "==", false)
       .get()
       .then((res) => {
         this.children = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }))

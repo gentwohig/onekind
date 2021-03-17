@@ -2,54 +2,80 @@
   <v-container fluid>
     <h1>User Dashboard</h1>
     <br />
-    <v-btn @click="addchildren()">click</v-btn>
-    <!-- Avatar and user progress -->
     <v-layout row wrap>
-      <v-flex lg9 class="yellow">
-        <v-container>
-          <v-layout justify-start align-start row wrap>
-            <v-flex lg6>
-              <user-progress />
-              <v-divider></v-divider>
-            </v-flex>
-          </v-layout>
-          <!-- Donation tasks -->
-          <v-layout row wrap>
-            <v-flex lg4 class="mt-4">
-              <task-card />
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-flex>
-      <!-- User info -->
-      <v-flex lg3 class="red">
-        <user-info />
+      <v-flex
+        v-for="child in users_children"
+        :key="child.id"
+        xl3
+        lg4
+        md4
+        sm6
+        xs12
+      >
+        <ChildCard :child="child" />
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-// import taskCard from '~/components/taskCard.vue'
-// import UserProgress from '~/components/UserProgress.vue'
+import { mapState } from 'vuex'
 export default {
   layout: 'userDashboard',
   data: () => ({
-    children: [],
+    users_children: [],
   }),
+  computed: {
+    ...mapState(['user']),
+  },
+  watch: {
+    user: {
+      handler(val) {
+        if (val.children)
+          if (val.children.length)
+            this.$fire.firestore
+              .collection('children')
+              .where(
+                this.$fireModule.firestore.FieldPath.documentId(),
+                'in',
+                val.children
+              )
+              .onSnapshot((res) => {
+                this.users_children = res.docs.map((child) => {
+                  const data = child.data()
+                  data.id = child.id
+                  return data
+                })
+              })
+        this.users_children = []
+      },
+      immediate: true,
+    },
+  },
   mounted() {
     // children() {
-    var child_coll = this.$fire.firestore.collection('children')
-    child_coll
-      .get()
-      .then((res) => {
-        this.children = res.docs.map((doc) => doc.data())
-      })
-      .catch((error) => {
-        console.log('Error getting document:', error)
-      })
+    // var child_coll = this.$fire.firestore.collection('children')
+    // child_coll
+    //   .get()
+    //   .then((res) => {
+    //     this.children = res.docs.map((doc) => doc.data())
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error getting document:', error)
+    //   })
     // return children
     // },
+    // get user's sponsored children
+    // var users_children = this.$fire.firestore.collection('children')
+    // users_children
+    //   .where(this.$fireModule.firestore.FieldPath.documentId(), 'in', this.user.children || [])
+    //   .get()
+    //   .then((res) => {
+    //     this.users_children = res.docs.map((doc) => doc.data())
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error getting document:', error)
+    //   })
   },
 }
 </script>
