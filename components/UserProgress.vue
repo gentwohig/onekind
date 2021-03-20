@@ -1,9 +1,9 @@
 <template>
-  <v-card elevation="5" class="pa-4">
+  <v-card elevation="5" class="pa-4" flat>
     <v-container>
       <v-layout row wrap>
         <v-flex xs4>
-          <v-img src="./boyAvatar.jpg"></v-img>
+          <v-img :src="`/${childImage}`" />
         </v-flex>
         <v-flex xs8>
           <h4>
@@ -21,5 +21,12 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    childImage: {
+      type: String,
+      required: true,
+    },
+  },
+}
 </script>

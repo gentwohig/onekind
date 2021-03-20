@@ -12,7 +12,7 @@
         <v-list-item-content> 2 </v-list-item-content>
       </v-list-item>
     </v-list>
-    <v-btn rounded large class="ma-3 text-center" color="primary">View</v-btn>
+    <v-btn rounded large class="ma-3 text-center" color="primary" @click="childDashboard">View</v-btn>
   </v-card>
 </template>
 <script>
@@ -24,22 +24,6 @@ export default {
       type: Object,
       required: true,
     },
-    // first_name: {
-    //   type: String,
-    //   required: true,
-    // },
-    // last_name: {
-    //   type: String,
-    //   required: true,
-    // },
-    // imageName: {
-    //   type: String,
-    //   required: true,
-    // },
-    // id: {
-    //   type: String,
-    //   required: true,
-    // },
   },
   computed: {
     ...mapState(['user']),
@@ -64,6 +48,9 @@ export default {
         console.error(error)
       }
     },
+    childDashboard() {
+      this.$router.push(`/childDashboard/${this.child.id}`)
+    }
   },
 }
 </script>

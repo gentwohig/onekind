@@ -3,7 +3,9 @@
     <h1>User Dashboard</h1>
     <br />
     <v-layout row wrap>
+      <h3 v-if="users_children == []">No Children Sponsored</h3>
       <v-flex
+        v-else
         v-for="child in users_children"
         :key="child.id"
         xl3
