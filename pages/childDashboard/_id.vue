@@ -1,29 +1,34 @@
 <template>
   <v-container>
-    <h1 class="mb-5">{{ child.first_name}} {{child.last_name}}</h1> 
+    <h1 v-if="child" class="mb-5">
+      {{ child.first_name }} {{ child.last_name }}
+    </h1>
     <!-- {{ child.imageName}} -->
     <!-- TODO Add section for DNE -->
-    <h1 v-if="!exist">Does not exist</h1> 
+    <h1 v-if="!exist">Does not exist</h1>
     <v-layout v-if="child" row wrap>
-      <v-flex lg9>
+      <v-flex  xs12 sm12 md12 lg9 class="px-1">
+        <v-row>
+          <v-col cols="6">
+            <ChildProfileCard/>
+          </v-col>
+          <v-col cols="6">
+          <UserProgress :childImage="child.imageName" />
+          </v-col>
+        </v-row>
+        <!-- Donation tasks -->
         <v-container>
-          <v-layout justify-start align-start row wrap>
-            <v-flex lg6>
-              <user-progress :childImage = "child.imageName"/>
-              <v-divider></v-divider>
-            </v-flex>
-          </v-layout>
-          <!-- Donation tasks -->
+          <v-card-title>Tasks to complete</v-card-title>
           <v-layout row wrap>
-            <v-flex lg4 class="mt-4">
-              <task-card />
+            <v-flex v-for="i in 4" :key="i" lg3 md6 sm12 xl3 class="pa-3">
+              <TaskCard :child_name="child.first_name" />
             </v-flex>
           </v-layout>
         </v-container>
       </v-flex>
       <!-- User info -->
-      <v-flex lg3>
-        <user-info />
+      <v-flex lg3 class="px-1">
+        <UserInfo />
       </v-flex>
     </v-layout>
   </v-container>
@@ -32,7 +37,7 @@
 export default {
   data: () => ({
     child: null,
-    exist: true
+    exist: true,
   }),
   mounted() {
     const { id } = this.$route.params
