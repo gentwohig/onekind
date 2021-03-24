@@ -2,7 +2,6 @@
   <v-card v-if="user">
     <v-btn @click="updateUserLevel"> click</v-btn>
     <v-toolbar flat dense>
-
       <v-toolbar-title>
         <span class="subheading text-capitalize"
           >Sponsor Level - {{ colorNLevel[1] }}</span
@@ -17,7 +16,7 @@
     <v-card-text>
       <v-row class="mb-4" justify="space-between">
         <v-col cols="8" class="text-left">
-          <span class="display-3 font-weight-light">{{level}}</span>
+          <span class="display-3 font-weight-light">{{ level }}</span>
           <span class="subheading font-weight-light mr-1">points</span>
         </v-col>
         <v-col class="text-right">
@@ -56,9 +55,9 @@ export default {
     ...mapState(['user']),
   },
   methods: {
-    updateUserLevel(){
+    updateUserLevel() {
       this.$store.dispatch('updateUserLevel', 120)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -7,13 +7,13 @@
     <!-- TODO Add section for DNE -->
     <h1 v-if="!exist">Does not exist</h1>
     <v-layout v-if="child" row wrap>
-      <v-flex  xs12 sm12 md12 lg9 class="px-1">
+      <v-flex xs12 sm12 md12 lg9 class="px-1">
         <v-row>
           <v-col cols="6">
-            <ChildProfileCard/>
+            <ChildProfileCard :child="child" />
           </v-col>
           <v-col cols="6">
-          <UserProgress :childImage="child.imageName" />
+            <UserProgress :childImage="child.imageName" />
           </v-col>
         </v-row>
         <!-- Donation tasks -->
