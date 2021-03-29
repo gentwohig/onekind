@@ -20,7 +20,7 @@
         <v-container>
           <v-card-title>Tasks to complete</v-card-title>
           <v-layout row wrap>
-            <v-flex v-for="i in 4" :key="i" lg3 md6 sm12 xl3 class="pa-3">
+            <v-flex v-for="i in 4" :key="i" lg4 md6 sm4 xl3 class="pa-3">
               <TaskCard :child_name="child.first_name" />
             </v-flex>
           </v-layout>
