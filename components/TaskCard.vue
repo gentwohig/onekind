@@ -3,12 +3,13 @@
     <v-row justify="center" align="center">
       <v-col cols="6">
         <v-img height="120" contain :src="task.image"></v-img>
+        {{ task.image }}
       </v-col>
       <v-col cols="6">
         <v-img height="120" :src="task.child_image"></v-img>
       </v-col>
     </v-row>
-    <v-card-title>{{ child_name + ' ' + task.title }}</v-card-title>
+    <v-card-title>{{ child_name + ' ' + task.name }}</v-card-title>
     <v-card-title class="grey--text"
       >Cost
       <span class="green--text mx-2"> ${{ task.price }}</span></v-card-title
@@ -16,7 +17,9 @@
     <v-card-subtitle>Gain {{ task.points }} points</v-card-subtitle>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn rounded class="primary">Send an item to child</v-btn>
+      <v-btn rounded class="primary" @click="itemInfo"
+        >Send an item to child</v-btn
+      >
       <v-spacer></v-spacer>
     </v-card-actions>
   </v-card>
@@ -32,7 +35,7 @@ export default {
     task: {
       type: Object,
       default: () => ({
-        title: 'needs a winter Jacket',
+        name: 'needs a winter Jacket',
         itemId: '1',
         itemImage:
           'https://images-na.ssl-images-amazon.com/images/I/61sYKIAutBL._AC_UL1500_.jpg',
@@ -41,6 +44,11 @@ export default {
         points: 10,
         price: 25,
       }),
+    },
+  },
+  methods: {
+    itemInfo() {
+      // this.$router.push(`/item/${this.child.id}`)
     },
   },
 }

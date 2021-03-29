@@ -20,7 +20,15 @@
         <v-container>
           <v-card-title>Tasks to complete</v-card-title>
           <v-layout row wrap>
-            <v-flex v-for="i in 4" :key="i" lg4 md6 sm4 xl3 class="pa-3">
+            <v-flex
+              v-for="task in childTasks"
+              :key="task.id"
+              lg4
+              md6
+              sm4
+              xl3
+              class="pa-3"
+            >
               <TaskCard :child_name="child.first_name" />
             </v-flex>
           </v-layout>
@@ -38,7 +46,35 @@ export default {
   data: () => ({
     child: null,
     exist: true,
+    childTasks: [],
   }),
+  watch: {
+    child: {
+      handler(val) {
+        if (val) {
+          console.log('VAL:', val)
+          this.$fire.firestore
+            .collection('children')
+            .doc(val.id)
+            .collection('tasks')
+            .onSnapshot((res) => {
+              this.childTasks = []
+              res.forEach((item) => this.childTasks.push(item.data()))
+            })
+
+          // .where(
+          //       this.$fireModule.firestore.FieldPath.documentId(),
+          //       'in',
+          //       val
+          //     )
+          // .onSnapshot((res) => {
+
+          // })
+        }
+      },
+      immediate: true,
+    },
+  },
   mounted() {
     const { id } = this.$route.params
     if (!id) this.$router.push('/userDashboard')
@@ -51,6 +87,7 @@ export default {
           return
         }
         this.child = res.data()
+        this.child.id = res.id
       })
   },
 }
