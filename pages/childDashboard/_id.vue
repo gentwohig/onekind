@@ -29,7 +29,7 @@
               xl3
               class="pa-3"
             >
-              <TaskCard :child_name="child.first_name" />
+              <TaskCard :child_name="child.first_name" :task="task" />
             </v-flex>
           </v-layout>
         </v-container>
@@ -52,7 +52,6 @@ export default {
     child: {
       handler(val) {
         if (val) {
-          console.log('VAL:', val)
           this.$fire.firestore
             .collection('children')
             .doc(val.id)
@@ -61,15 +60,6 @@ export default {
               this.childTasks = []
               res.forEach((item) => this.childTasks.push(item.data()))
             })
-
-          // .where(
-          //       this.$fireModule.firestore.FieldPath.documentId(),
-          //       'in',
-          //       val
-          //     )
-          // .onSnapshot((res) => {
-
-          // })
         }
       },
       immediate: true,
