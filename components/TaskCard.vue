@@ -22,10 +22,11 @@
     <v-card-subtitle>Gain {{ task.points }} points</v-card-subtitle>
     <v-card-actions>
       <v-spacer></v-spacer>
+      {{ dialog }}
       <v-btn rounded class="primary" @click="dialog = true">
         Send an item to child
       </v-btn>
-      <v-dialog :value="dialog" width="1000">
+      <v-dialog :value="dialog">
         <ItemInfo :itemId="task.item" />
       </v-dialog>
       <v-spacer></v-spacer>
@@ -37,6 +38,7 @@
 export default {
   data: () => ({
     dialog: false,
+    item: null,
   }),
   props: {
     child_name: {
@@ -56,6 +58,23 @@ export default {
         price: 25,
       }),
     },
+  },
+  mounted() {
+    // const { id } = this.itemId
+    // if (!id) this.$router.push('/userDashboard')
+    console.log(this.task.item)
+    this.$fire.firestore
+      .collection('items')
+      .doc(this.task.item)
+      .onSnapshot((res) => {
+        if (!res.exists) {
+          this.exist = false
+          return
+        }
+        this.item = res.data()
+        this.item.id = res.id
+        // this.child.id = res.id
+      })
   },
 }
 </script>

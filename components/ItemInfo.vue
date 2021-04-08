@@ -1,17 +1,33 @@
 <template>
-  <v-card height="800">
-    <v-layout>
-      <v-flex lg6>
-        <v-img
-          src="https://ae01.alicdn.com/kf/HTB1Bqu0VSzqK1RjSZFLq6An2XXai/Acrylic-Paints-Set-to-Paint-Crafts-Acrylic-Painting-12-18-24-Colors-Graffiti-for-Kids-and.jpg"
-        ></v-img>
-      </v-flex>
-      <v-flex lg6>
-        <v-card-title>Painting set</v-card-title>
-        <v-card-title>{{ item.points }}</v-card-title>
-        <!-- <v-card-subtitle>{{ item.points }}</v-card-subtitle> -->
-      </v-flex>
-    </v-layout>
+  <v-card v-if="item" class="pa-3">
+    <v-container>
+      <v-layout fill-height row wrap align-center>
+        <v-flex lg6 md12 xs12 class="pa-2">
+          <v-img max-height="600" contain :src="item.image"></v-img>
+        </v-flex>
+        <v-flex lg6 md12 xs12 class="pa-2">
+          <!-- <v-layout align-center justify-center row wrap> -->
+
+          <h1>
+            {{ item.name }}
+          </h1>
+          <!-- <v-col cols="12" class="text-h4 font-weight-bold text-capitalize"> -->
+          <h2>
+            {{ item.cost }}
+          </h2>
+          <!-- </v-col> -->
+          <!-- <v-col cols="12" class="text-h6 font-weight-medium"> -->
+
+          <h2>Points: {{ item.points }}</h2>
+          <!-- </v-col> -->
+          <!-- <v-col cols="12"> -->
+          <v-btn class="primary">Send item</v-btn>
+          <!-- </v-col> -->
+
+          <!-- </v-layout>   -->
+        </v-flex>
+      </v-layout>
+    </v-container>
   </v-card>
 </template>
 
@@ -38,6 +54,7 @@ export default {
           return
         }
         this.item = res.data()
+        this.item.id = res.id
         // this.child.id = res.id
       })
   },
