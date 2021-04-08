@@ -3,7 +3,6 @@
     <v-container>
       <v-layout fill-height row wrap align-center>
         <v-flex lg6 md12 sm12 xs12 class="pa-2 justify-center d-flex">
-          <!-- <v-img max-height="600" contain :src="item.image"></v-img> -->
           <div style="max-width: 700px; min-width: 700px">
             <v-carousel v-model="model">
               <v-carousel-item
@@ -29,7 +28,9 @@
             Choose any of the following options and click Send Item to send to
             child.
           </p>
-          <v-btn class="primary mt-10">Send item</v-btn>
+          <v-btn class="primary mt-10" @click="updateUserLevel"
+            >Send item</v-btn
+          >
         </v-flex>
       </v-layout>
     </v-container>
@@ -37,16 +38,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data: () => ({
     item: null,
     model: 0,
-    colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
   }),
   props: {
     itemId: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    updateUserLevel() {
+      this.$store.dispatch('updateUserLevel', this.item.points)
     },
   },
   mounted() {

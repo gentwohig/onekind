@@ -1,6 +1,5 @@
 <template>
   <v-card v-if="user">
-    <v-btn @click="updateUserLevel"> click</v-btn>
     <v-toolbar flat dense>
       <v-toolbar-title>
         <span class="subheading text-capitalize"
