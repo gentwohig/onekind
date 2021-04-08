@@ -2,29 +2,34 @@
   <v-card v-if="item" class="pa-3">
     <v-container>
       <v-layout fill-height row wrap align-center>
-        <v-flex lg6 md12 xs12 class="pa-2">
-          <v-img max-height="600" contain :src="item.image"></v-img>
+        <v-flex lg6 md12 sm12 xs12 class="pa-2 justify-center d-flex">
+          <!-- <v-img max-height="600" contain :src="item.image"></v-img> -->
+          <div style="max-width: 700px; min-width: 700px">
+            <v-carousel v-model="model">
+              <v-carousel-item
+                v-for="(image, i) in item.images"
+                :key="i"
+                :src="image"
+                contain
+              >
+              </v-carousel-item>
+            </v-carousel>
+          </div>
         </v-flex>
-        <v-flex lg6 md12 xs12 class="pa-2">
-          <!-- <v-layout align-center justify-center row wrap> -->
-
+        <v-flex lg6 md12 sm12 xs12 class="pa-2">
           <h1>
             {{ item.name }}
           </h1>
-          <!-- <v-col cols="12" class="text-h4 font-weight-bold text-capitalize"> -->
           <h2>
             {{ item.cost }}
           </h2>
-          <!-- </v-col> -->
-          <!-- <v-col cols="12" class="text-h6 font-weight-medium"> -->
-
-          <h2>Points: {{ item.points }}</h2>
-          <!-- </v-col> -->
-          <!-- <v-col cols="12"> -->
-          <v-btn class="primary">Send item</v-btn>
-          <!-- </v-col> -->
-
-          <!-- </v-layout>   -->
+          <h3 class="mt-5">Points: {{ item.points }}</h3>
+          <h3 class="mt-5">Information</h3>
+          <p>
+            Choose any of the following options and click Send Item to send to
+            child.
+          </p>
+          <v-btn class="primary mt-10">Send item</v-btn>
         </v-flex>
       </v-layout>
     </v-container>
@@ -35,6 +40,8 @@
 export default {
   data: () => ({
     item: null,
+    model: 0,
+    colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
   }),
   props: {
     itemId: {
@@ -43,8 +50,6 @@ export default {
     },
   },
   mounted() {
-    // const { id } = this.itemId
-    // if (!id) this.$router.push('/userDashboard')
     this.$fire.firestore
       .collection('items')
       .doc(this.itemId)
@@ -55,7 +60,6 @@ export default {
         }
         this.item = res.data()
         this.item.id = res.id
-        // this.child.id = res.id
       })
   },
 }
