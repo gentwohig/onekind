@@ -1,7 +1,5 @@
 <template>
   <v-card class="ma-3 text-center" elevation="3">
-    <v-btn @click="unsponsor">delete</v-btn>
-    {{ child.id }}
     <v-card flat class="pa-4">
       <v-img max-height="300" :src="child.imageName" />
     </v-card>
@@ -29,25 +27,6 @@ export default {
     ...mapState(['user']),
   },
   methods: {
-    async unsponsor() {
-      try {
-        console.log('here')
-        await this.$fire.firestore
-          .collection('users')
-          .doc(this.user.uid)
-          .update({
-            children: this.$fireModule.firestore.FieldValue.arrayRemove(
-              this.child.id
-            ),
-          })
-        await this.$fire.firestore
-          .collection('children')
-          .doc(this.child.id)
-          .update({ status: false })
-      } catch (error) {
-        console.error(error)
-      }
-    },
     childDashboard() {
       this.$router.push(`/childDashboard/${this.child.id}`)
     }

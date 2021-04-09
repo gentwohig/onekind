@@ -6,7 +6,7 @@
         <UserInfo />
       </v-flex>
       <v-flex lg6 md12 sm12 xs12 class="ma-3">
-        <h2 class="mt-12">Sponsored Children</h2>
+        <h2 class="mt-12 mb-4">Sponsored Children</h2>
         <v-data-table
           :headers="headers"
           :items="users_children"

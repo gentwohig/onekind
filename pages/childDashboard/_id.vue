@@ -7,7 +7,7 @@
     <!-- TODO Add section for DNE -->
     <h1 v-if="!exist">Does not exist</h1>
     <v-layout v-if="child" row wrap>
-      <v-flex xs12 sm12 md12 lg9 class="px-1">
+      <!-- <v-flex xs12 sm12 md12 lg9 class="px-1"> -->
         <v-row>
           <v-col cols="6">
             <ChildProfileCard :child="child" />
@@ -33,11 +33,7 @@
             </v-flex>
           </v-layout>
         </v-container>
-      </v-flex>
-      <!-- User info -->
-      <v-flex lg3 class="px-1">
-        <UserInfo />
-      </v-flex>
+      <!-- </v-flex> -->
     </v-layout>
   </v-container>
 </template>

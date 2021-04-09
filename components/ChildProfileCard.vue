@@ -3,12 +3,7 @@
     <v-container>
       <v-layout row wrap>
         <v-flex lg6>
-          <!-- <v-avatar size="82" class="ml-4 mt-4">
-            <v-img :src="`/${child.imageName}`"></v-img>
-          </v-avatar> -->
-          <!-- <v-card flat> -->
           <v-img max-height="300" :src="`/${child.imageName}`"></v-img>
-          <!-- </v-card> -->
         </v-flex>
         <v-flex lg6>
           <v-list dense>
