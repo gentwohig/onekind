@@ -23,8 +23,8 @@
     <v-card-actions>
       <v-spacer></v-spacer>
       {{ dialog }}
-      <v-btn rounded class="primary" @click="dialog = true">
-        Send an item to child
+      <v-btn rounded class="primary mb-3" @click="dialog = true">
+        Send item to child
       </v-btn>
       <v-dialog :value="dialog">
         <ItemInfo :itemId="task.item" />

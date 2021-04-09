@@ -1,74 +1,87 @@
 [
-    {
-        "name": "paint set",
-        "need": "need",
-        "image": "http://dummyimage.com/600x.png/5fa2dd/ffffff",
-        "item": "3dGMqgdU5EiakamozhcK"
-    },
-    {
-        "name": "reading book",
-        "need": "want",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "item": "40KBXwJFDDX4IR2d83Ur"
-    },
-    {
-        "name": "crayons",
-        "need": "need",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "item": "9ILZeptmBAJExN1wW8Bq"
-    },
-    {
-        "name": "shoes",
-        "need": "need",
-        "image": "http://dummyimage.com/600x.png/5fa2dd/ffffff",
-        "item": "BO0B1GcCVfkrUyjJBzAp"
-    },
-    {
-        "name": "socks",
-        "need": "need",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "item": "K2BbbvqCCCFfe92xwgJi"
-    },
-    {
-        "name": "dress",
-        "need": "want",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "item": "MuEaM6BImxX3TvY0E3J8"
-    },
-    {
-        "name": "school bag",
-        "need": "want",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "item": "Pr85A1T2K5wF29l7p5bF"
-    },
-    {
-        "name": "doll",
-        "need": "need",
-        "image": "http://dummyimage.com/600x.png/5fa2dd/ffffff",
-        "item": "aiwJNGvcjdkVsq81yIi9"
-    },
-    {
-        "name": "gloves",
-        "need": "want",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "item": "jh4nkR8GlbRdO9IymwXu"
-    },
-    {
-        "name": "scarf",
-        "need": "want",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "item": "po1xunU2Rtl5irYNCYp9"
-    },
-    {
-        "name": "winter jacket",
-        "need": "want",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "item": "qJ27vMkWKXWezcfVsNvB"
-    },
-    {
-        "name": "shirt",
-        "need": "want",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "item": "z4Q7OeG5EsV2GhASVBwN"
-    }
+  {
+    "name": "pants",
+    "cost": "$28.03",
+    "need": "need",
+    "images": [
+      "https://i5.walmartimages.com/asr/07d3f50a-6f91-40ee-a7ed-97097e3993db_1.0843ef3d8e8822d54897c99c5aacd868.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff",
+      "https://s7d2.scene7.com/is/image/academy/20049224?$d-plp-product-image$",
+      "https://cdn.shoplo.com/3927/products/th2048/acao/9284-spo121515_girls-pants_zielone-min.jpg"
+    ],
+    "item": "3dGMqgdU5EiakamozhcK",
+    "points": 150
+  },
+  {
+    "name": "reading book",
+    "cost": "$48.39",
+    "need": "want",
+    "images": [
+      "https://images-na.ssl-images-amazon.com/images/I/81drfTT9ZfL.jpg",
+      "https://images-na.ssl-images-amazon.com/images/I/81P+Kws4Z-L.jpg",
+      "https://images-na.ssl-images-amazon.com/images/I/91I2ywLs1YL.jpg"
+    ],
+    "item": "40KBXwJFDDX4IR2d83Ur",
+    "points": 25
+  },
+  {
+    "name": "crayons",
+    "cost": "$10.39",
+    "need": "need",
+    "images": [
+      "https://imgs.michaels.com/MAM/assets/1/5E3C12034D34434F8A9BAAFDDF0F8E1B/img/DA10AD3F31C343C79577F6B57539562B/10620567_6.jpg?fit=inside|1024:1024"
+    ],
+    "item": "9ILZeptmBAJExN1wW8Bq",
+    "points": 30
+  },
+  {
+    "name": "shoes",
+    "cost": "$42.33",
+    "need": "need",
+    "images": [
+      "https://image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-INT-Site/Sites-master/en/dw8f8450f0/33CAM1032_001_01.jpg?imwidth=915&impolicy=product",
+      "https://www.vivobarefoot.com/media/catalog/product/1/1/114090-01_side_1_2.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700",
+      "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/e26494878fa84d29bca2a993018139b5_9366/Adilette_Aqua_Slides_Black_F35556_01_standard.jpg"
+    ],
+    "item": "BO0B1GcCVfkrUyjJBzAp",
+    "points": 50
+  },
+  {
+    "name": "socks",
+    "cost": "$1.07",
+    "need": "need",
+    "images": [
+      "https://5.imimg.com/data5/RM/YY/MY-26381587/kids-socks-500x500.jpg",
+      "https://cdn.shopify.com/s/files/1/2031/9031/products/GC70_WHITE_ORG-RYL.2_900x.jpg?v=1569334120",
+      "https://joe-cool.uk/wp-content/uploads/2018/03/61638.jpg"
+    ],
+    "item": "K2BbbvqCCCFfe92xwgJi",
+    "points": 150
+  },
+  {
+    "name": "school bag",
+    "cost": "$28.67",
+    "need": "want",
+    "images": [
+      "https://image.made-in-china.com/2f0j00VTZYhtUlHncA/Cheap-Wholesale-Used-Kids-Backpack-School-Bags-of-Latest-Designs.jpg",
+      "https://pyxis.nymag.com/v1/imgs/5b8/00c/6597fc71f2be650796deda37ec5d764133-amazonbasics-classic-school-backpack.2x.rhorizontal.w600.jpg"
+    ],
+    "item": "Pr85A1T2K5wF29l7p5bF",
+    "points": 25
+  },
+  {
+    "name": "gloves",
+    "cost": "$22.65",
+    "need": "want",
+    "image": "http://dummyimage.com/600x.png/dddddd/000000",
+    "item": "jh4nkR8GlbRdO9IymwXu",
+    "points": 50
+  },
+  {
+    "name": "winter jacket",
+    "cost": "$17.27",
+    "need": "want",
+    "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
+    "item": "qJ27vMkWKXWezcfVsNvB",
+    "points": 50
+  }
 ]

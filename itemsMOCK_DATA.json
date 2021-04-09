@@ -1,122 +1,76 @@
 [
-    {
-        "name": "pants",
-        "cost": "$28.03",
-        "image": "http://dummyimage.com/600x.png/cc0000/ffffff",
-        "points": 150
-    },
-    {
-        "name": "winter hat",
-        "cost": "$13.47",
-        "image": "http://dummyimage.com/600x.png/5fa2dd/ffffff",
-        "points": 200
-    },
-    {
-        "name": "pencils",
-        "cost": "$35.12",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "points": 50
-    },
-    {
-        "name": "doll",
-        "cost": "$43.88",
-        "image": "http://dummyimage.com/600x.png/5fa2dd/ffffff",
-        "points": 50
-    },
-    {
-        "name": "paint",
-        "cost": "$15.25",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "points": 200
-    },
-    {
-        "name": "dress",
-        "cost": "$42.78",
-        "image": "http://dummyimage.com/600x.png/cc0000/ffffff",
-        "points": 25
-    },
-    {
-        "name": "winter jacket",
-        "cost": "$17.27",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "points": 50
-    },
-    {
-        "name": "reading book",
-        "cost": "$48.39",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "points": 25
-    },
-    {
-        "name": "pens",
-        "cost": "$42.86",
-        "image": "http://dummyimage.com/600x.png/cc0000/ffffff",
-        "points": 25
-    },
-    {
-        "name": "exercise books",
-        "cost": "$5.93",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "points": 25
-    },
-    {
-        "name": "crayons",
-        "cost": "$33.64",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "points": 50
-    },
-    {
-        "name": "school bag",
-        "cost": "$28.67",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "points": 25
-    },
-    {
-        "name": "toy car",
-        "cost": "$6.25",
-        "image": "http://dummyimage.com/600x.png/cc0000/ffffff",
-        "points": 25
-    },
-    {
-        "name": "hat",
-        "cost": "$11.00",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "points": 150
-    },
-    {
-        "name": "gloves",
-        "cost": "$22.65",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "points": 50
-    },
-    {
-        "name": "paint set",
-        "cost": "$26.40",
-        "image": "http://dummyimage.com/600x.png/dddddd/000000",
-        "points": 150
-    },
-    {
-        "name": "shoes",
-        "cost": "$42.33",
-        "image": "http://dummyimage.com/600x.png/cc0000/ffffff",
-        "points": 50
-    },
-    {
-        "name": "socks",
-        "cost": "$1.07",
-        "image": "http://dummyimage.com/600x.png/ff4444/ffffff",
-        "points": 150
-    },
-    {
-        "name": "shirt",
-        "cost": "$16.97",
-        "image": "http://dummyimage.com/600x.png/cc0000/ffffff",
-        "points": 50
-    },
-    {
-        "name": "scarf",
-        "cost": "$35.10",
-        "image": "http://dummyimage.com/600x.png/5fa2dd/ffffff",
-        "points": 150
-    }
+  {
+    "name": "pants",
+    "cost": "$28.03",
+    "images": [
+      "https://i5.walmartimages.com/asr/07d3f50a-6f91-40ee-a7ed-97097e3993db_1.0843ef3d8e8822d54897c99c5aacd868.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff",
+      "https://s7d2.scene7.com/is/image/academy/20049224?$d-plp-product-image$",
+      "https://cdn.shoplo.com/3927/products/th2048/acao/9284-spo121515_girls-pants_zielone-min.jpg"
+    ],
+    "points": 150
+  },
+  {
+    "name": "reading book",
+    "cost": "$48.39",
+    "images": [
+      "https://images-na.ssl-images-amazon.com/images/I/81drfTT9ZfL.jpg",
+      "https://images-na.ssl-images-amazon.com/images/I/81P+Kws4Z-L.jpg",
+      "https://images-na.ssl-images-amazon.com/images/I/91I2ywLs1YL.jpg"
+    ],
+    "points": 25
+  },
+  {
+    "name": "crayons",
+    "cost": "$10.39",
+    "images": [
+      "https://imgs.michaels.com/MAM/assets/1/5E3C12034D34434F8A9BAAFDDF0F8E1B/img/DA10AD3F31C343C79577F6B57539562B/10620567_6.jpg?fit=inside|1024:1024"
+    ],
+    "points": 30
+  },
+  {
+    "name": "shoes",
+    "cost": "$42.33",
+    "images": [
+      "https://image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-INT-Site/Sites-master/en/dw8f8450f0/33CAM1032_001_01.jpg?imwidth=915&impolicy=product",
+      "https://www.vivobarefoot.com/media/catalog/product/1/1/114090-01_side_1_2.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700",
+      "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/e26494878fa84d29bca2a993018139b5_9366/Adilette_Aqua_Slides_Black_F35556_01_standard.jpg"
+    ],
+    "points": 50
+  },
+  {
+    "name": "socks",
+    "cost": "$1.07",
+    "images": [
+      "https://5.imimg.com/data5/RM/YY/MY-26381587/kids-socks-500x500.jpg",
+      "https://cdn.shopify.com/s/files/1/2031/9031/products/GC70_WHITE_ORG-RYL.2_900x.jpg?v=1569334120",
+      "https://joe-cool.uk/wp-content/uploads/2018/03/61638.jpg"
+    ],
+    "points": 150
+  },
+  {
+    "name": "school bag",
+    "cost": "$28.67",
+    "images": [
+      "https://image.made-in-china.com/2f0j00VTZYhtUlHncA/Cheap-Wholesale-Used-Kids-Backpack-School-Bags-of-Latest-Designs.jpg",
+      "https://pyxis.nymag.com/v1/imgs/5b8/00c/6597fc71f2be650796deda37ec5d764133-amazonbasics-classic-school-backpack.2x.rhorizontal.w600.jpg"
+    ],
+    "points": 25
+  },
+  {
+    "name": "gloves",
+    "cost": "$22.65",
+    "image": [
+      "https://5.imimg.com/data5/CF/NP/MY-47250591/multicolor-kids-woolen-hand-gloves-500x500.jpg",
+      "https://images-na.ssl-images-amazon.com/images/I/A1cdw6h7lvL._AC_SL1500_.jpg"
+    ],
+    "points": 50
+  },
+  {
+    "name": "winter jacket",
+    "cost": "$17.27",
+    "images": [
+      "https://images-na.ssl-images-amazon.com/images/I/61rKZMSQaYL._AC_UL1500_.jpg"
+    ],
+    "points": 50
+  }
 ]

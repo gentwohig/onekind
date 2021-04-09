@@ -7,6 +7,8 @@
       tempor incididunt ut labore et dolore magna aliqua. Placerat orci nulla
       pellentesque dignissim enim sit.
     </p>
+    {{items}}
+    <v-btn @click="getItems">click</v-btn>
 
     <v-text-field
       filled
@@ -96,7 +98,7 @@
               <v-card flat class="pa-4">
                 <v-img
                   max-height="300"
-                  :src="item.imageName"
+                  :src="item.avatar"
                 />
               </v-card>
               <v-card-title>
@@ -170,12 +172,13 @@
 
 <script>
 import { mapState } from 'vuex'
-import DATA from '../MOCK_DATA.json'
+import DATA from '../itemsMOCK_DATA.json'
 export default {
   layout: 'availableRecipients',
   data() {
     return {
       DATA,
+      items:[],
       itemsPerPageArray: [4, 8, 12],
       children: [],
       search: '',
@@ -249,10 +252,19 @@ export default {
       // } catch(e) {
       //   console.log(e)
       // }
+    },
+    getItems() {
+      this.$fire.firestore.collection('items').get().then(res => {
+        let items = []
+        res.forEach(item => {
+          items.push(item.id)
+        })
+        this.items = items
+      })
     }
     // addchildren() {
     //   this.DATA.forEach((item) => {
-    //     this.$fire.firestore.collection('children').add(item)
+    //     this.$fire.firestore.collection('items').add(item)
     //   })
     // },
   },
