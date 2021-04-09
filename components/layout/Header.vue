@@ -31,12 +31,30 @@
         style="font-weight: bold; font-size: 24px"
       />
       <v-spacer></v-spacer>
-      <v-btn text class="black--text" v-if="collapseOnScroll == false" @click="availableRecipients">
-        Available Recipients</v-btn
+      <v-btn
+        text
+        class="black--text"
+        v-if="collapseOnScroll == false"
+        @click="availableRecipients"
       >
-      <v-btn text class="black--text" v-if="collapseOnScroll == false" @click="dashboard">
-        Dashboard</v-btn
+        Available Recipients
+      </v-btn>
+      <v-btn
+        text
+        class="black--text"
+        v-if="collapseOnScroll == false"
+        @click="dashboard"
       >
+        Dashboard
+      </v-btn>
+       <v-btn
+        text
+        class="black--text"
+        v-if="collapseOnScroll == false"
+        @click="settings"
+      >
+        Settings
+      </v-btn>
       <v-btn
         text
         class="black--text"
@@ -83,7 +101,10 @@ export default {
     },
     availableRecipients() {
       this.$router.push('/availableRecipients')
-    }
+    },
+    settings() {
+      this.$router.push('/settings')
+    },
   },
 }
 </script>
