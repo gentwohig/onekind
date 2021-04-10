@@ -4,7 +4,7 @@
       <v-layout fill-height row wrap align-center>
         <v-flex lg6 md12 sm12 xs12 class="pa-2 justify-center d-flex">
           <div style="max-width: 700px; min-width: 700px">
-            <v-carousel v-model="model">
+            <v-carousel>
               <v-carousel-item
                 v-for="(image, i) in item.images"
                 :key="i"
@@ -38,15 +38,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
-  data: () => ({
-    item: null,
-    model: 0,
-  }),
   props: {
-    itemId: {
-      type: String,
+    item: {
+      type: Object,
       required: true,
     },
   },
@@ -54,19 +49,6 @@ export default {
     updateUserLevel() {
       this.$store.dispatch('updateUserLevel', this.item.points)
     },
-  },
-  mounted() {
-    this.$fire.firestore
-      .collection('items')
-      .doc(this.itemId)
-      .onSnapshot((res) => {
-        if (!res.exists) {
-          this.exist = false
-          return
-        }
-        this.item = res.data()
-        this.item.id = res.id
-      })
   },
 }
 </script>

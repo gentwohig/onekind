@@ -3,7 +3,7 @@
     <v-container>
       <v-layout row wrap>
         <v-flex lg6>
-          <v-img max-height="300" :src="`/${child.imageName}`"></v-img>
+          <v-img max-height="300" :src="child.avatar"></v-img>
         </v-flex>
         <v-flex lg6>
           <v-list dense>

@@ -7,8 +7,6 @@
       tempor incididunt ut labore et dolore magna aliqua. Placerat orci nulla
       pellentesque dignissim enim sit.
     </p>
-    {{items}}
-    <v-btn @click="getItems">click</v-btn>
 
     <v-text-field
       filled
@@ -39,45 +37,6 @@
             prepend-inner-icon="fas fa-search"
             label="Search name, country, age"
           ></v-text-field>
-          <!-- <template v-if="$vuetify.breakpoint.mdAndUp">
-            <v-spacer></v-spacer>
-            <v-autocomplete
-              v-model="items"
-              chips
-              multiple
-              flat
-              clearable
-              deletable-chips
-              solo-inverted
-              hide-details
-              :items="countryFilterKeys"
-              prepend-inner-icon="mdi-magnify"
-              label="Filter by Origin"
-            ></v-autocomplete>
-            <v-spacer></v-spacer>
-            <v-autocomplete
-              v-model="items"
-              chips
-              multiple
-              flat
-              clearable
-              deletable-chips
-              solo-inverted
-              hide-details
-              :items="genderFilterKeys"
-              prepend-inner-icon="mdi-magnify"
-              label="Filter by Gender"
-            ></v-autocomplete>
-            <v-spacer></v-spacer>
-            <v-btn-toggle v-model="sortDesc" mandatory>
-              <v-btn large depressed color="blue" :value="false">
-                <v-icon>mdi-arrow-up</v-icon>
-              </v-btn>
-              <v-btn large depressed color="blue" :value="true">
-                <v-icon>mdi-arrow-down</v-icon>
-              </v-btn>
-            </v-btn-toggle>
-          </template> -->
         </v-toolbar>
       </template>
 
@@ -96,10 +55,7 @@
           >
             <v-card class="ma-3" elevation="3">
               <v-card flat class="pa-4">
-                <v-img
-                  max-height="300"
-                  :src="item.avatar"
-                />
+                <v-img max-height="300" :src="item.avatar" />
               </v-card>
               <v-card-title>
                 {{ item.first_name }} {{ item.last_name }}
@@ -172,14 +128,13 @@
 
 <script>
 import { mapState } from 'vuex'
-import DATA from '../itemsMOCK_DATA.json'
+// import DATA from '../Tasks2.json'
 export default {
   layout: 'availableRecipients',
   data() {
     return {
-      DATA,
-      items:[],
-      itemsPerPageArray: [4, 8, 12],
+      // DATA,
+      items: [],
       children: [],
       search: '',
       filter: {},
@@ -215,65 +170,70 @@ export default {
     async addChild() {
       // logic for adding child to user
       try {
-        if(this.user.children) {
+        if (this.user.children) {
           await this.$fire.firestore
-          .collection('users')
-          .doc(this.user.uid)
-          .update({
-            children: this.$fireModule.firestore.FieldValue.arrayUnion(this.dialog.id)
-          })
-         
+            .collection('users')
+            .doc(this.user.uid)
+            .update({
+              children: this.$fireModule.firestore.FieldValue.arrayUnion(
+                this.dialog.id
+              ),
+            })
         } else {
-           await this.$fire.firestore
-          .collection('users')
-          .doc(this.user.uid)
-          .set({
-            children: [this.dialog.id]
-          }, { merge: true })
+          await this.$fire.firestore
+            .collection('users')
+            .doc(this.user.uid)
+            .set(
+              {
+                children: [this.dialog.id],
+              },
+              { merge: true }
+            )
         }
-         
-        await this.$fire.firestore.collection('children').doc(this.dialog.id).update({ status: true })
+
+        await this.$fire.firestore
+          .collection('children')
+          .doc(this.dialog.id)
+          .update({ status: true })
         this.$router.push('/userDashboard')
       } catch (error) {
         console.log(error)
       }
-     
-        
-        // console.log(this.dialog.status)
+
+      // console.log(this.dialog.status)
     },
     async addChild2() {
       // try {
-      await this.$fire.firestore
-        .collection('users')
-        .doc(this.user.uid)
-        console.log(this.user)
-        console.log(this.user.uid)
+      await this.$fire.firestore.collection('users').doc(this.user.uid)
+      console.log(this.user)
+      console.log(this.user.uid)
 
       // } catch(e) {
       //   console.log(e)
       // }
     },
-    getItems() {
-      this.$fire.firestore.collection('items').get().then(res => {
-        let items = []
-        res.forEach(item => {
-          items.push(item.id)
-        })
-        this.items = items
-      })
-    }
-    // addchildren() {
-    //   this.DATA.forEach((item) => {
-    //     this.$fire.firestore.collection('items').add(item)
+    // getItems() {
+    //   this.$fire.firestore.collection('items').get().then(res => {
+    //     let items = []
+    //     res.forEach(item => {
+    //       items.push(item.id)
+    //     })
+    //     this.items = items
     //   })
+    // }
+    // addchildren() {
+
+    //     this.DATA.forEach((item) => {
+    //       this.$fire.firestore.collection('children').add(item)
+    //     })
     // },
   },
   mounted() {
     // children() {
     var child_coll = this.$fire.firestore.collection('children')
     child_coll
-      .limit(5)
-      .where("status", "==", false)
+      .limit(32)
+      .where('status', '==', false)
       .get()
       .then((res) => {
         this.children = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }))

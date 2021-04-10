@@ -1,7 +1,7 @@
 <template>
   <v-card class="ma-3 text-center" elevation="3">
     <v-card flat class="pa-4">
-      <v-img max-height="300" :src="child.imageName" />
+      <v-img max-height="300" :src="child.avatar" />
     </v-card>
     <v-card-title>{{ child.first_name }} {{ child.last_name }}</v-card-title>
     <v-list dense>
