@@ -15,7 +15,7 @@
         Send item to child
       </v-btn>
       <v-dialog v-model="dialog">
-        <ItemInfo :item="item" />
+        <ItemInfo :item="item" :task="task" />
       </v-dialog>
       <v-spacer></v-spacer>
     </v-card-actions>
@@ -33,6 +33,10 @@ export default {
       default: 'Salva',
     },
     item: {
+      type: Object,
+      required: true,
+    },
+    task: {
       type: Object,
       required: true,
     },

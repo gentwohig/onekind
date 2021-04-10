@@ -39,15 +39,40 @@
 
 <script>
 export default {
+  data: () => ({
+    child: {},
+  }),
   props: {
     item: {
       type: Object,
       required: true,
     },
+    task: {
+      type: Object,
+      required: true,
+    },
   },
   methods: {
-    updateUserLevel() {
+    async updateUserLevel() {
       this.$store.dispatch('updateUserLevel', this.item.points)
+      // Remove item id from task collection for each child
+      const id = this.$route.params.id
+      try {
+        await this.$fire.firestore
+          .collection('children')
+          .doc(id)
+          .collection('tasks')
+          .doc(this.task.id)
+          .delete()
+      } catch (error) {
+        console.log('Error removing document: ', error)
+      }
+      this.$Swal.fire({
+        title: 'Item sent!',
+        text: 'Thank you for your donation',
+        icon: 'success',
+        confirmButtonText: 'Cool',
+      })
     },
   },
 }

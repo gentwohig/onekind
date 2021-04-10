@@ -13,7 +13,9 @@
           class="elevation-1"
         >
           <template v-slot:[`item.status`]="{ item }">
-            <v-btn small @click="unsponsor(item.id)" color="error">Unsponsor</v-btn>
+            <v-btn small @click="unsponsor(item.id)" color="error"
+              >Unsponsor</v-btn
+            >
           </template>
         </v-data-table>
       </v-flex>
