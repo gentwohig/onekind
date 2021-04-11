@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <h1>Children of Kind Organization</h1>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -13,9 +13,10 @@
       filled
       rounded
       class="my-5"
-      hide-details
       prepend-inner-icon="search"
       label="Search by name, country, age or gender"
+      :hint="`${childrenCount || children.length} result(s) found`"
+      persistent-hint
     ></v-text-field>
 
     <!-- Data iterator -->
@@ -27,19 +28,21 @@
       :sort-by="sortBy.toLowerCase()"
       :sort-desc="sortDesc"
       hide-default-footer
+      @current-items="updateChildCount"
     >
       <template v-slot:default="props">
-        <v-layout row wrap>
+        <v-layout row wrap justify-center>
           <v-flex
             v-for="item in props.items"
             :key="item.id"
             xl3
             lg4
-            md4
-            sm6
+            md6
+            sm12
             xs12
+            class="pa-2"
           >
-            <v-card class="ma-3 rounded-xl" elevation="6">
+            <v-card class="rounded-xl" elevation="3">
               <v-card flat class="pa-4 text-center justify-center">
                 <v-img height="350" class="rounded-xl" :src="item.avatar" />
               </v-card>
@@ -68,17 +71,21 @@
                 </v-list-item>
               </v-list-group>
               <v-card-actions>
-                <v-btn rounded class="primary mb-3 mx-3 pa-3"
-                  >Watch Video <v-icon class="pa-3">smart_display</v-icon>
+                <v-btn rounded class="primary mb-3 mx-3 pa-1"
+                  >Watch Video <v-icon class="pa-1">smart_display</v-icon>
                 </v-btn>
+                <v-spacer></v-spacer>
                 <v-btn
                   outlined
                   rounded
-                  class="mb-3 ml-1 pa-3"
-                  @click="dialog = item"
+                  class="mb-3 ml-1 pa-1"
+                  @click="
+                    itemInDialog = item
+                    dialog = true
+                  "
                 >
                   Sponsor
-                  <v-icon class="pa-3" color="error">volunteer_activism</v-icon>
+                  <v-icon class="pa-1" color="error">volunteer_activism</v-icon>
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -86,7 +93,7 @@
         </v-layout>
       </template>
     </v-data-iterator>
-    <v-dialog :value="dialog" width="500">
+    <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-card-title class="headline accent white--text">
           Privacy Policy
@@ -112,13 +119,12 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-container>
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 export default {
-  layout: 'availableRecipients',
   data() {
     return {
       items: [],
@@ -132,7 +138,9 @@ export default {
       keys: ['age', 'country', 'hobby', 'gender'],
       genderFilterKeys: ['Female', 'Male'],
       countryFilterKeys: ['Syria', 'Lybia'],
-      dialog: null,
+      dialog: false,
+      itemInDialog: null,
+      childrenCount: null,
     }
   },
   computed: {
@@ -163,7 +171,7 @@ export default {
             .doc(this.user.uid)
             .update({
               children: this.$fireModule.firestore.FieldValue.arrayUnion(
-                this.dialog.id
+                this.itemInDialog.id
               ),
             })
         } else {
@@ -172,15 +180,14 @@ export default {
             .doc(this.user.uid)
             .set(
               {
-                children: [this.dialog.id],
+                children: [this.itemInDialog.id],
               },
               { merge: true }
             )
         }
-
         await this.$fire.firestore
           .collection('children')
-          .doc(this.dialog.id)
+          .doc(this.itemInDialog.id)
           .update({ status: true })
         this.$router.push('/userDashboard')
       } catch (error) {
@@ -190,6 +197,9 @@ export default {
     async addChild2() {
       await this.$fire.firestore.collection('users').doc(this.user.uid)
     },
+    updateChildCount(ar) {
+      this.childrenCount = ar.length;
+    }
   },
   mounted() {
     var child_coll = this.$fire.firestore.collection('children')

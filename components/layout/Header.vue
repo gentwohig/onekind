@@ -1,70 +1,22 @@
 <template>
-  <div>
-    <!-- <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer> -->
-    <v-app-bar flat app color="white">
-      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
-      <v-toolbar-title
-        v-text="title"
-        style="font-weight: bold; font-size: 24px"
-      />
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        class="black--text"
-        v-if="collapseOnScroll == false"
-        @click="availableRecipients"
-      >
+  <v-app-bar flat app color="white">
+    <v-toolbar-title
+      v-text="title"
+      style="font-weight: bold; font-size: 24px"
+    />
+    <v-spacer></v-spacer>
+    <v-btn v-if="$vuetify.breakpoint.mdAndDown" icon @click="$emit('openNav')">
+      <v-icon>menu</v-icon>
+    </v-btn>
+    <span v-else>
+      <v-btn text color="accent" to="/availableRecipients">
         Available Recipients
       </v-btn>
-      <v-btn
-        text
-        class="black--text"
-        v-if="collapseOnScroll == false"
-        @click="dashboard"
-      >
-        Dashboard
-      </v-btn>
-       <v-btn
-        text
-        class="black--text"
-        v-if="collapseOnScroll == false"
-        @click="settings"
-      >
-        Settings
-      </v-btn>
-      <v-btn
-        text
-        class="black--text"
-        v-if="collapseOnScroll == false"
-        @click="signOut"
-      >
-        Sign out
-      </v-btn>
-    </v-app-bar>
-  </div>
+      <v-btn text color="accent" to="/userDashboard"> Dashboard </v-btn>
+      <v-btn text color="accent" to="/settings"> Settings </v-btn>
+      <v-btn text color="accent" @click="signOut"> Sign out </v-btn>
+    </span>
+  </v-app-bar>
 </template>
 
 <script>
@@ -95,15 +47,6 @@ export default {
   methods: {
     signOut() {
       this.$fire.auth.signOut()
-    },
-    dashboard() {
-      this.$router.push('/userDashboard')
-    },
-    availableRecipients() {
-      this.$router.push('/availableRecipients')
-    },
-    settings() {
-      this.$router.push('/settings')
     },
   },
 }

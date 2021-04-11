@@ -1,9 +1,11 @@
 <template>
   <v-app>
-    <Header />
-
+    <Header @openNav="$refs.navigationDrawer.openNav()" />
+    <navigation-drawer ref="navigationDrawer" />
     <v-main>
-      <nuxt />
+      <v-container>
+        <nuxt />
+      </v-container>
     </v-main>
     <Footer />
   </v-app>

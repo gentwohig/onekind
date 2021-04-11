@@ -23,7 +23,6 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  layout: 'userDashboard',
   data: () => ({
     users_children: [],
   }),
