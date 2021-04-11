@@ -1,7 +1,12 @@
-h1{
-    font-size: 60pt !important;
-    text-transform: capitalize;
+h1 {
+  font-size: 60pt !important;
+  text-transform: capitalize;
+  //   background-image: linear-gradient(to left, #f79f64, #00b887);
+  //   -webkit-background-clip: text;
+  //   -webkit-text-fill-color: transparent;
+  // display: inline;
+  color: #00b887;
 }
 h2 {
-    font-size: 35pt !important;
+  font-size: 35pt !important;
 }

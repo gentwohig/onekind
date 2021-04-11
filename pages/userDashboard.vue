@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <h1>User Dashboard</h1>
     <br />
     <v-layout row wrap>
-      <h3 v-if="users_children == []">No Children Sponsored</h3>
+      <h3 v-if="users_children.length == 0">No Children Sponsored</h3>
       <v-flex
         v-else
         v-for="child in users_children"

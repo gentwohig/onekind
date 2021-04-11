@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <h1>Children of Kind Organization</h1>
-    <!-- {{ children }} -->
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Placerat orci nulla
@@ -9,10 +8,14 @@
     </p>
 
     <v-text-field
+      v-model="search"
+      clearable
       filled
       rounded
-      class="mx-15"
-      prepend-inner-icon="fas fa-search"
+      class="my-5"
+      hide-details
+      prepend-inner-icon="search"
+      label="Search by name, country, age or gender"
     ></v-text-field>
 
     <!-- Data iterator -->
@@ -25,23 +28,6 @@
       :sort-desc="sortDesc"
       hide-default-footer
     >
-      <template v-slot:header>
-        <v-toolbar rounded class="ma-3 mb-6">
-          <v-text-field
-            v-model="search"
-            clearable
-            dense
-            rounded
-            filled
-            hide-details
-            prepend-inner-icon="fas fa-search"
-            label="Search name, country, age"
-          ></v-text-field>
-        </v-toolbar>
-      </template>
-
-      <!-- ---- -->
-
       <template v-slot:default="props">
         <v-layout row wrap>
           <v-flex
@@ -53,29 +39,22 @@
             sm6
             xs12
           >
-            <v-card class="ma-3" elevation="3">
-              <v-card flat class="pa-4">
-                <v-img max-height="300" :src="item.avatar" />
+            <v-card class="ma-3 rounded-xl" elevation="6">
+              <v-card flat class="pa-4 text-center justify-center">
+                <v-img height="350" class="rounded-xl" :src="item.avatar" />
               </v-card>
-              <v-card-title>
-                {{ item.first_name }} {{ item.last_name }}
-              </v-card-title>
+              <h3 class="pa-3">{{ item.first_name }} {{ item.last_name }}</h3>
               <v-list dense>
                 <v-list-item v-for="(key, index) in filteredKeys" :key="index">
-                  <v-list-item-content
-                    :class="{ 'blue--text': sortBy === key }"
-                    class="text-capitalize"
-                  >
+                  <div class="text-capitalize">
                     {{ key }}:
-                  </v-list-item-content>
-                  <v-list-item-content>
-                    {{ item[key.toLowerCase()] }}
-                  </v-list-item-content>
+                    <span class="px-2">
+                      {{ item[key.toLowerCase()] }}
+                    </span>
+                  </div>
                 </v-list-item>
               </v-list>
-
               <!-- Toggle -->
-
               <v-list-group :value="false">
                 <template v-slot:activator>
                   <v-list-item-title>Medical Note</v-list-item-title>
@@ -88,10 +67,20 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-list-group>
-              <v-btn rounded class="primary mb-3 mx-3">Watch Video 📹 </v-btn>
-              <v-btn outlined rounded class="mb-3 ml-1" @click="dialog = item">
-                Sponsor 💞
-              </v-btn>
+              <v-card-actions>
+                <v-btn rounded class="primary mb-3 mx-3 pa-3"
+                  >Watch Video <v-icon class="pa-3">smart_display</v-icon>
+                </v-btn>
+                <v-btn
+                  outlined
+                  rounded
+                  class="mb-3 ml-1 pa-3"
+                  @click="dialog = item"
+                >
+                  Sponsor
+                  <v-icon class="pa-3" color="error">volunteer_activism</v-icon>
+                </v-btn>
+              </v-card-actions>
             </v-card>
           </v-flex>
         </v-layout>
@@ -99,13 +88,10 @@
     </v-data-iterator>
     <v-dialog :value="dialog" width="500">
       <v-card>
-        <v-card-title class="headline grey lighten-2">
+        <v-card-title class="headline accent white--text">
           Privacy Policy
         </v-card-title>
-
-        <v-card-text>
-          {{ dialog }}
-
+        <v-card-text class="py-3">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -114,12 +100,15 @@
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </v-card-text>
-
         <v-divider></v-divider>
-
         <v-card-actions>
+          <v-btn color="error" rounded elevation="0" @click="dialog = false">
+            Decline
+          </v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="addChild"> I accept </v-btn>
+          <v-btn color="success" rounded elevation="0" @click="addChild">
+            Accept
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -128,12 +117,10 @@
 
 <script>
 import { mapState } from 'vuex'
-// import DATA from '../Tasks2.json'
 export default {
   layout: 'availableRecipients',
   data() {
     return {
-      // DATA,
       items: [],
       children: [],
       search: '',
@@ -167,8 +154,8 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number
     },
+    // logic for adding child to user
     async addChild() {
-      // logic for adding child to user
       try {
         if (this.user.children) {
           await this.$fire.firestore
@@ -199,37 +186,12 @@ export default {
       } catch (error) {
         console.log(error)
       }
-
-      // console.log(this.dialog.status)
     },
     async addChild2() {
-      // try {
       await this.$fire.firestore.collection('users').doc(this.user.uid)
-      console.log(this.user)
-      console.log(this.user.uid)
-
-      // } catch(e) {
-      //   console.log(e)
-      // }
     },
-    // getItems() {
-    //   this.$fire.firestore.collection('items').get().then(res => {
-    //     let items = []
-    //     res.forEach(item => {
-    //       items.push(item.id)
-    //     })
-    //     this.items = items
-    //   })
-    // }
-    // addchildren() {
-
-    //     this.DATA.forEach((item) => {
-    //       this.$fire.firestore.collection('children').add(item)
-    //     })
-    // },
   },
   mounted() {
-    // children() {
     var child_coll = this.$fire.firestore.collection('children')
     child_coll
       .limit(32)
@@ -241,8 +203,6 @@ export default {
       .catch((error) => {
         console.log('Error getting document:', error)
       })
-    // return children
-    // },
   },
 }
 </script>

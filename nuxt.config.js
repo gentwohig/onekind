@@ -79,19 +79,19 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     defaultAssets: {
-      icons: 'fa',
+      icons: 'md',
     },
     theme: {
       dark: false,
       themes: {
         light: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
+          primary: '#f79f64',
+          accent: '#444054',
+          secondary:'#00b887',
+          info: '#444054',
+          warning: '#f2b602',
+          error: '#ff5c5c',
+          success: '#00b887',
         },
       },
     },
