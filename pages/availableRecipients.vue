@@ -198,8 +198,8 @@ export default {
       await this.$fire.firestore.collection('users').doc(this.user.uid)
     },
     updateChildCount(ar) {
-      this.childrenCount = ar.length;
-    }
+      this.childrenCount = ar.length
+    },
   },
   mounted() {
     var child_coll = this.$fire.firestore.collection('children')

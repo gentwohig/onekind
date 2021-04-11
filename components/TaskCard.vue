@@ -1,9 +1,9 @@
 <template>
-  <v-card elevation="5">
+  <v-card elevation="5" class="rounded-xl">
     <div class="pa-2">
-    <v-img height="120" contain :src="getImage(item.images)"></v-img>
+    <v-img height="120" contain class="rounded-xl" :src="getImage(item.images)"></v-img>
     </div>
-    <v-card-title>{{ 'Send ' + child_name + ' a ' + item.name }}</v-card-title>
+    <h3 class="pa-2">{{ 'Send ' + child_name + ' a ' + item.name }}</h3>
     <v-card-title class="grey--text">
       Cost
       <span class="green--text mx-2">{{ item.cost }}</span>

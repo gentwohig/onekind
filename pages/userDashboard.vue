@@ -32,22 +32,23 @@ export default {
   watch: {
     user: {
       handler(val) {
-        if (val.children)
-          if (val.children.length)
-            this.$fire.firestore
-              .collection('children')
-              .where(
-                this.$fireModule.firestore.FieldPath.documentId(),
-                'in',
-                val.children
-              )
-              .onSnapshot((res) => {
-                this.users_children = res.docs.map((child) => {
-                  const data = child.data()
-                  data.id = child.id
-                  return data
+        if (val)
+          if (val.children)
+            if (val.children.length)
+              this.$fire.firestore
+                .collection('children')
+                .where(
+                  this.$fireModule.firestore.FieldPath.documentId(),
+                  'in',
+                  val.children
+                )
+                .onSnapshot((res) => {
+                  this.users_children = res.docs.map((child) => {
+                    const data = child.data()
+                    data.id = child.id
+                    return data
+                  })
                 })
-              })
         this.users_children = []
       },
       immediate: true,

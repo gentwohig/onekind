@@ -1,11 +1,11 @@
 <template>
-  <v-card v-if="user">
+  <v-card v-if="user" class="rounded-xl">
     <v-container>
       <v-toolbar flat dense>
         <v-toolbar-title>
-          <span class="subheading text-capitalize"
-            >Sponsor Level - {{ colorNLevel[1] }}</span
-          >
+          <span class="subheading text-capitalize">
+            Sponsor Level - {{ colorNLevel[1] }}
+          </span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn icon>
@@ -25,6 +25,7 @@
         </v-row>
 
         <v-slider
+          readonly
           v-model="level"
           :color="colorNLevel[0]"
           track-color="grey"
@@ -32,7 +33,6 @@
         >
         </v-slider>
       </v-card-text>
-      <v-btn @click="updateUserLevel" color="primary">Click Me!</v-btn>
     </v-container>
   </v-card>
 </template>
@@ -59,7 +59,8 @@ export default {
   },
   methods: {
     updateUserLevel() {
-      if (this.user.level < this.maxPoints) this.$store.dispatch('updateUserLevel', 120)
+      if (this.user.level < this.maxPoints)
+        this.$store.dispatch('updateUserLevel', 120)
     },
   },
 }

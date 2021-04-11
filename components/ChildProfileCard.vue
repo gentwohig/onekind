@@ -1,9 +1,9 @@
 <template>
-  <v-card elevation="5">
+  <v-card elevation="5" class="rounded-xl">
     <v-container>
       <v-layout row wrap>
         <v-flex lg6>
-          <v-img max-height="300" :src="child.avatar"></v-img>
+          <v-img max-height="300" class="rounded-xl" :src="child.avatar"></v-img>
         </v-flex>
         <v-flex lg6>
           <v-list dense>

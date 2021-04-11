@@ -87,7 +87,7 @@ export default {
         light: {
           primary: '#f79f64',
           accent: '#444054',
-          secondary:'#00b887',
+          secondary: '#00b887',
           info: '#444054',
           warning: '#f2b602',
           error: '#ff5c5c',
@@ -96,6 +96,7 @@ export default {
       },
     },
   },
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

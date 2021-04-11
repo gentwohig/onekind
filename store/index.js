@@ -1,3 +1,4 @@
 export const state = () => ({
-  user: {},
+  user: null,
+  authChanged: 0
 })

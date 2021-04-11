@@ -3,13 +3,13 @@
     <h2>Create an account</h2>
     <v-card-subtitle>
       Already have an account?
-      <v-btn
+      <nuxt-link
         class="blue--text text-decoration-underline"
         style="cursor: pointer"
         to="/signin"
       >
         Sign in
-      </v-btn>
+      </nuxt-link>
     </v-card-subtitle>
     <v-form ref="signup" @submit.prevent="signup">
       <v-container>
@@ -47,7 +47,7 @@
             placeholder="Password"
             type="password"
           />
-          <v-btn block type="submit">Sign up</v-btn>
+          <v-btn block type="submit" :loading="loading">Sign up</v-btn>
         </v-layout>
       </v-container>
     </v-form>
@@ -55,16 +55,18 @@
 </template>
 <script>
 export default {
-  layout: 'signup',
+  layout: 'auth',
   data: () => ({
     name: { first: '', last: '' },
     email: '',
     password: '',
     required: [(v) => !!v || 'this is required'],
+    loading: false,
   }),
   methods: {
     signup() {
       if (this.$refs.signup.validate()) {
+        this.loading = true
         this.$fire.auth
           .createUserWithEmailAndPassword(this.email, this.password)
           .then((userCredential) => {
@@ -77,7 +79,10 @@ export default {
                 email: this.email,
               })
               .then((res) => {
-                this.$router.push('/dashboard')
+                setTimeout(() => {
+                  this.loading = false
+                  this.$router.push('/userDashboard')
+                }, 1000)
               })
               .catch((err) => {
                 console.log(err)
