@@ -20,7 +20,7 @@
             <span class="subheading font-weight-light mr-1">points</span>
           </v-col>
           <v-col class="text-right">
-            <v-icon :color="colorNLevel[0]" large> fas fa-certificate </v-icon>
+            <v-icon :color="colorNLevel[0]" large> verified </v-icon>
           </v-col>
         </v-row>
 
