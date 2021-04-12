@@ -33,6 +33,7 @@
         >
         </v-slider>
       </v-card-text>
+      <v-btn color="primary" @click="updateUserLevel">Click me</v-btn>
     </v-container>
   </v-card>
 </template>
@@ -58,9 +59,10 @@ export default {
     ...mapState(['user']),
   },
   methods: {
+    // example only
     updateUserLevel() {
       if (this.user.level < this.maxPoints)
-        this.$store.dispatch('updateUserLevel', 120)
+        this.$store.dispatch('updateUserLevel', 100)
     },
   },
 }

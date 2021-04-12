@@ -3,12 +3,7 @@
     <h2>Create an account</h2>
     <v-card-subtitle>
       Already have an account?
-      <nuxt-link
-        class="blue--text"
-        to="/signin"
-      >
-        Sign in
-      </nuxt-link>
+      <nuxt-link class="blue--text" to="/signin"> Sign in </nuxt-link>
     </v-card-subtitle>
     <v-form ref="signup" @submit.prevent="signup">
       <v-container>
@@ -46,7 +41,9 @@
             placeholder="Password"
             type="password"
           />
-          <v-btn block type="submit" :loading="loading">Sign up</v-btn>
+          <v-btn color="primary" block type="submit" :loading="loading"
+            >Sign up</v-btn
+          >
         </v-layout>
       </v-container>
     </v-form>

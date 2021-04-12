@@ -22,7 +22,7 @@
           placeholder="Password"
           type="password"
         />
-        <v-btn block type="submit" :loading="loading">Sign in</v-btn>
+        <v-btn color="primary" block type="submit" :loading="loading">Sign in</v-btn>
       </v-container>
     </v-form>
   </v-card>
