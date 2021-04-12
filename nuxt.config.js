@@ -20,7 +20,7 @@ export default {
   css: ['~/assets/custom.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/swal'],
+  plugins: ['~/plugins/injectors'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -87,7 +87,7 @@ export default {
         light: {
           primary: '#f79f64',
           accent: '#444054',
-          secondary: '#00b887',
+          secondary: '#ffa188',
           info: '#444054',
           warning: '#f2b602',
           error: '#ff5c5c',

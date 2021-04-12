@@ -1,33 +1,33 @@
 <template>
-  <v-card v-if="user" class="rounded-xl">
+  <v-card class="rounded-xl">
     <v-container>
       <v-toolbar flat dense>
         <v-toolbar-title>
           <span class="subheading text-capitalize">
-            Sponsor Level - {{ colorNLevel[1] }}
+            Sponsor Level - {{ level.badge }}
           </span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn icon>
-          <v-icon>fas fa-share-alt</v-icon>
+          <v-icon color="black">share</v-icon>
         </v-btn>
       </v-toolbar>
 
       <v-card-text>
         <v-row class="mb-4" justify="space-between">
           <v-col cols="8" class="text-left">
-            <span class="display-3 font-weight-light">{{ level }}</span>
+            <span class="display-3 font-weight-light">{{ level.points }}</span>
             <span class="subheading font-weight-light mr-1">points</span>
           </v-col>
           <v-col class="text-right">
-            <v-icon :color="colorNLevel[0]" large> verified </v-icon>
+            <v-icon :color="level.color" large> verified </v-icon>
           </v-col>
         </v-row>
 
         <v-slider
           readonly
-          v-model="level"
-          :color="colorNLevel[0]"
+          :value="level.points"
+          :color="level.color"
           track-color="grey"
           :max="maxPoints"
         >
@@ -42,28 +42,17 @@
 import { mapState } from 'vuex'
 export default {
   data: () => ({
-    interval: null,
-    ticksLabels: ['Figs', 'Lemon', 'Pear', 'Apple'],
-    maxPoints: 9000,
+    maxPoints: 400,
   }),
-  computed: {
-    level() {
-      return this.user.level || 0
-    },
-    colorNLevel() {
-      if (this.level < 3000) return ['#CD7F32', 'bronze']
-      if (this.level < 6000) return ['#C0C0C0', 'silver']
-      if (this.level < 9000) return ['#DAA520', 'gold']
-      return ['#E5E4E2', 'platinum']
-    },
-    ...mapState(['user']),
-  },
-  methods: {
-    // example only
-    updateUserLevel() {
-      if (this.user.level < this.maxPoints)
-        this.$store.dispatch('updateUserLevel', 100)
-    },
+  props: {
+    level: {
+      type: Object,
+      default: () => ({
+        badge: 'Bronze',
+        color: '#CD7F32',
+        points: 0
+      })
+    }
   },
 }
 </script>

@@ -11,7 +11,7 @@
     <v-card-subtitle>Gain {{ item.points }} points</v-card-subtitle>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn elevation="0" color="secondary" class="mb-3" @click="dialog = true">
+      <v-btn elevation="0" color="primary" class="mb-3" @click="dialog = true">
         Send item to child
       </v-btn>
       <v-dialog v-model="dialog">

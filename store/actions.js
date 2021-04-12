@@ -2,7 +2,6 @@ export default {
   onAuthStateChangedAction({ commit }, { authUser, claims }) {
     if (process.client)
       if (!authUser) {
-        console.log('heer')
         // claims = null
         // perform logout operations
         commit('ON_AUTH_STATE_CHANGED', null)
@@ -19,11 +18,11 @@ export default {
         // Do something with the authUser and the claims object...
       }
   },
-  updateUserLevel({ state }, increment) {
-    increment = this.$fireModule.firestore.FieldValue.increment(increment)
+  updateUserLevel({ }, params) {
+    const increment = this.$fireModule.firestore.FieldValue.increment(params[0])
     this.$fire.firestore
-      .collection('users')
-      .doc(state.user.uid)
-      .update({ level: increment })
+      .collection('children')
+      .doc(params[1])
+      .update({ user_points: increment })
   },
 }

@@ -6,8 +6,12 @@
     <v-card-title>{{ child.first_name }} {{ child.last_name }}</v-card-title>
     <v-list dense>
       <v-list-item>
-        <v-list-item-content> Level </v-list-item-content>
-        <v-list-item-content> 2 </v-list-item-content>
+        <v-list-item-content> Badge </v-list-item-content>
+        <v-list-item-content class="text-capitalize"> {{ $colorNLevel(child.user_points).badge }} </v-list-item-content>
+      </v-list-item>
+      <v-list-item>
+        <v-list-item-content> Points </v-list-item-content>
+        <v-list-item-content> {{  $colorNLevel(child.user_points).points }} </v-list-item-content>
       </v-list-item>
     </v-list>
     <v-btn rounded large class="ma-3 text-center" color="primary" @click="childDashboard">View</v-btn>

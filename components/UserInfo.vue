@@ -1,24 +1,49 @@
 <template>
-  <div>
-    <v-avatar size="82">
-      <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-    </v-avatar>
-    <v-card-title>John Smith</v-card-title>
+  <div v-if="user">
+    <v-card-title>{{ Object.values(user.name).join(', ') }}</v-card-title>
     <v-form>
-      <v-text-field label="First name" value="John" outlined></v-text-field>
-      <v-text-field label="Last name" value="Smith" outlined></v-text-field>
       <v-text-field
-        label="Email"
-        value="www.example.com"
+        label="First name"
+        :value="user.name.first"
         outlined
+        readonly
       ></v-text-field>
-      <v-text-field label="Password" value="1234" outlined></v-text-field>
-      <v-textarea label="Bio"></v-textarea>
+      <v-text-field
+        label="Last name"
+        :value="user.name.last"
+        outlined
+        readonly
+      ></v-text-field>
+      <v-text-field label="Email" :value="user.email" outlined></v-text-field>
+      <v-textarea label="Bio" v-model="user_bio"></v-textarea>
     </v-form>
-    <v-btn>Add/update Payment Method</v-btn>
+    <v-btn color="secondary" @click="updateBio">Update Bio</v-btn>
+    <v-btn color="primary">Add/update Payment Method</v-btn>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+export default {
+  data: () => ({
+    user_bio: '',
+  }),
+  computed: {
+    ...mapState(['user']),
+  },
+  watch:{
+    user(val){
+      if(val) this.user_bio = val.bio
+    }
+  },
+  methods: {
+    updateBio() {
+      console.log(this.user_bio)
+      this.$fire.firestore
+        .collection('users')
+        .doc(this.user.uid)
+        .update({ bio: this.user_bio })
+    },
+  },
+}
 </script>

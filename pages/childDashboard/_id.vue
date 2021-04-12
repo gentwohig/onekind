@@ -12,7 +12,7 @@
           <ChildProfileCard :child="child" />
         </v-col>
         <v-col cols="6">
-          <UserProgress />
+          <UserProgress :level="$colorNLevel(child.user_points)"/>
         </v-col>
       </v-row>
       <!-- Donation tasks -->
