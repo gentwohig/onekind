@@ -11,20 +11,9 @@
 </template>
 <style scoped>
 .background {
-  background-image: linear-gradient(
-    to right,
-    #ff00f4,
-    #ff00af,
-    #ff2d72,
-    #ff6c43,
-    #ff9624,
-    #fdac2a,
-    #fac037,
-    #f6d448,
-    #f1db67,
-    #ede184,
-    #eae79f,
-    #eaebba
-  );
+  background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-position: center;
+  background-size: 100%;
+  
 }
 </style>

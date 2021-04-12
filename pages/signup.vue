@@ -1,11 +1,10 @@
 <template>
-  <v-card class="text-center pa-3 py-10" width="400" shaped>
+  <v-card class="text-center pa-3 py-10" width="400">
     <h2>Create an account</h2>
     <v-card-subtitle>
       Already have an account?
       <nuxt-link
-        class="blue--text text-decoration-underline"
-        style="cursor: pointer"
+        class="blue--text"
         to="/signin"
       >
         Sign in
