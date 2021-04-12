@@ -33,7 +33,7 @@
         >
         </v-slider>
       </v-card-text>
-      <v-btn color="primary" @click="updateUserLevel">Click me</v-btn>
+      <!-- <v-btn color="primary" @click="updateUserLevel">Click me</v-btn> -->
     </v-container>
   </v-card>
 </template>
