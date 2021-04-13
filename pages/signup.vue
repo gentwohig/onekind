@@ -41,9 +41,9 @@
             placeholder="Password"
             type="password"
           />
-          <v-btn color="primary" block type="submit" :loading="loading"
-            >Sign up</v-btn
-          >
+          <v-btn color="primary" block type="submit" :loading="loading">
+            Sign up
+          </v-btn>
         </v-layout>
       </v-container>
     </v-form>
@@ -60,6 +60,7 @@ export default {
     loading: false,
   }),
   methods: {
+    // creating user with email and Password & creating entry in user collection using user id
     signup() {
       if (this.$refs.signup.validate()) {
         this.loading = true
@@ -75,7 +76,7 @@ export default {
                 email: this.email,
               })
               .then((res) => {
-                setTimeout(() => {
+                setTimeout(() => { // after 1 second reroute to userDashboard
                   this.loading = false
                   this.$router.push('/userDashboard')
                 }, 1000)

@@ -31,12 +31,14 @@ export default {
   computed: {
     ...mapState(['user']),
   },
-  watch:{
-    user(val){
-      if(val) this.user_bio = val.bio
-    }
+  watch: {
+    // load initial bio
+    user(val) {
+      if (val) this.user_bio = val.bio
+    },
   },
   methods: {
+    // update user bio
     updateBio() {
       console.log(this.user_bio)
       this.$fire.firestore

@@ -53,14 +53,13 @@ export default {
     },
   },
   methods: {
+    // updates user points
     async updateUserLevel() {
       const id = this.$route.params.id
-      console.log(id)
-
       this.$store.dispatch('updateUserLevel', [this.item.points, id])
-      // Remove item id from task collection for each child
 
       try {
+        // Remove item id from task collection for each child
         await this.$fire.firestore
           .collection('children')
           .doc(id)

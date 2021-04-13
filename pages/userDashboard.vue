@@ -29,7 +29,8 @@ export default {
   computed: {
     ...mapState(['user']),
   },
-  watch: {
+  watch: { 
+    // watching user to request user's sponsored children 
     user: {
       handler(val) {
         if (val)
@@ -53,31 +54,6 @@ export default {
       },
       immediate: true,
     },
-  },
-  mounted() {
-    // children() {
-    // var child_coll = this.$fire.firestore.collection('children')
-    // child_coll
-    //   .get()
-    //   .then((res) => {
-    //     this.children = res.docs.map((doc) => doc.data())
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-    // return children
-    // },
-    // get user's sponsored children
-    // var users_children = this.$fire.firestore.collection('children')
-    // users_children
-    //   .where(this.$fireModule.firestore.FieldPath.documentId(), 'in', this.user.children || [])
-    //   .get()
-    //   .then((res) => {
-    //     this.users_children = res.docs.map((doc) => doc.data())
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
   },
 }
 </script>

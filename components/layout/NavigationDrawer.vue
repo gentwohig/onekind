@@ -31,7 +31,6 @@ export default {
   methods: {
     openNav() {
       this.nav = true
-      console.log(this.nav)
     },
     signOut() {
       this.$fire.auth.signOut()

@@ -14,7 +14,7 @@
         <v-list-item-content> {{  $colorNLevel(child.user_points).points }} </v-list-item-content>
       </v-list-item>
     </v-list>
-    <v-btn rounded large class="ma-3 text-center" color="primary" @click="childDashboard">View</v-btn>
+    <v-btn rounded large class="ma-3 text-center" color="primary" :to="`/childDashboard/${this.child.id}`">View</v-btn>
   </v-card>
 </template>
 <script>
@@ -29,11 +29,6 @@ export default {
   },
   computed: {
     ...mapState(['user']),
-  },
-  methods: {
-    childDashboard() {
-      this.$router.push(`/childDashboard/${this.child.id}`)
-    }
   },
 }
 </script>

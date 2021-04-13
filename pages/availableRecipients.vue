@@ -48,7 +48,7 @@
               </v-card>
               <h3 class="pa-3">{{ item.first_name }} {{ item.last_name }}</h3>
               <v-list dense>
-                <v-list-item v-for="(key, index) in filteredKeys" :key="index">
+                <v-list-item v-for="(key, index) in keys" :key="index">
                   <div class="text-capitalize">
                     {{ key }}:
                     <span class="px-2">
@@ -136,32 +136,15 @@ export default {
       itemsPerPage: 1000,
       sortBy: 'name',
       keys: ['age', 'country', 'hobby', 'gender'],
-      genderFilterKeys: ['Female', 'Male'],
-      countryFilterKeys: ['Syria', 'Lybia'],
       dialog: false,
       itemInDialog: null,
       childrenCount: null,
     }
   },
   computed: {
-    numberOfPages() {
-      return Math.ceil(this.items.length / this.itemsPerPage)
-    },
-    filteredKeys() {
-      return this.keys.filter((key) => key !== 'Name')
-    },
     ...mapState(['user']),
   },
   methods: {
-    nextPage() {
-      if (this.page + 1 <= this.numberOfPages) this.page += 1
-    },
-    formerPage() {
-      if (this.page - 1 >= 1) this.page -= 1
-    },
-    updateItemsPerPage(number) {
-      this.itemsPerPage = number
-    },
     // logic for adding child to user
     async addChild() {
       try {
@@ -191,21 +174,20 @@ export default {
           .update({ status: true })
         this.$router.push('/userDashboard')
       } catch (error) {
-        console.log(error)
+        console.warn(error)
       }
     },
-    async addChild2() {
-      await this.$fire.firestore.collection('users').doc(this.user.uid)
-    },
-    updateChildCount(ar) {
+    // used to update search results count
+    updateChildCount(ar) { 
       this.childrenCount = ar.length
     },
   },
+  // getting unsponsored children on page mount
   mounted() {
     var child_coll = this.$fire.firestore.collection('children')
     child_coll
-      .limit(32)
-      .where('status', '==', false)
+      .limit(31) // there are 31 children in the children collection
+      .where('status', '==', false) // only show children that are not sponsored
       .get()
       .then((res) => {
         this.children = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }))

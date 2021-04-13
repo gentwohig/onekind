@@ -1,9 +1,8 @@
 export default {
+  // firebase authentication listener to update user state
   onAuthStateChangedAction({ commit }, { authUser, claims }) {
     if (process.client)
       if (!authUser) {
-        // claims = null
-        // perform logout operations
         commit('ON_AUTH_STATE_CHANGED', null)
       } else {
         this.$fire.firestore
@@ -15,9 +14,9 @@ export default {
               uid: authUser.uid,
             })
           })
-        // Do something with the authUser and the claims object...
       }
   },
+  // accepts params which contains points to increment and child id and updates child's user_points 
   updateUserLevel({ }, params) {
     const increment = this.$fireModule.firestore.FieldValue.increment(params[0])
     this.$fire.firestore

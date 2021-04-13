@@ -42,7 +42,7 @@ export default {
       this.$fire.auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          setTimeout(() => {
+          setTimeout(() => { // after 1 second reroute to userDashboard
             this.loading = false
             this.$router.push('/userDashboard')
           }, 1000)

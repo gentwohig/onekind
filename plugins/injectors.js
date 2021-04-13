@@ -1,4 +1,6 @@
+// inject extra function into nuxt context
 import Swal from 'sweetalert2'
+// logic for calculating color, badge according to user points
 function colorNLevel(points) {
   const obj = {
     "bronze": { color: '#CD7F32', badge: 'bronze'}, 

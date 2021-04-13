@@ -23,9 +23,6 @@ export default {
       },
       immediate: true,
     },
-    user(val) {
-      // if (val) this.$router.push('/availableRecipients') // if sign out does it go to here
-    },
   },
 }
 </script>

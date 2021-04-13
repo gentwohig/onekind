@@ -1,4 +1,4 @@
-# onekind1
+# OneKind
 
 ## Build Setup
 

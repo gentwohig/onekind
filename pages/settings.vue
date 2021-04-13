@@ -13,9 +13,9 @@
           class="elevation-1"
         >
           <template v-slot:[`item.status`]="{ item }">
-            <v-btn small @click="unsponsor(item.id)" color="error"
-              >Unsponsor</v-btn
-            >
+            <v-btn small @click="unsponsor(item.id)" color="error">
+              Unsponsor
+            </v-btn>
           </template>
         </v-data-table>
       </v-flex>
@@ -46,9 +46,9 @@ export default {
     ...mapState(['user']),
   },
   methods: {
-    async unsponsor(child_id) {
+    // removes child from user and sets child back in children array w/ status false
+    async unsponsor(child_id) { 
       try {
-        console.log('here')
         await this.$fire.firestore
           .collection('users')
           .doc(this.user.uid)
@@ -60,13 +60,14 @@ export default {
         await this.$fire.firestore
           .collection('children')
           .doc(child_id)
-          .update({ status: false })
+          .update({ status: false, user_points: 0 })
       } catch (error) {
         console.error(error)
       }
     },
   },
   watch: {
+    // watching user to request user's sponsored children 
     user: {
       handler(val) {
         if (val)

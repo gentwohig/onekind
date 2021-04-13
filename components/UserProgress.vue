@@ -33,13 +33,11 @@
         >
         </v-slider>
       </v-card-text>
-      <!-- <v-btn color="primary" @click="updateUserLevel">Click me</v-btn> -->
     </v-container>
   </v-card>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   data: () => ({
     maxPoints: 400,

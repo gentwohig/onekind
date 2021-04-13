@@ -3,10 +3,8 @@
     <h1 v-if="child" class="mb-5">
       {{ child.first_name }} {{ child.last_name }}
     </h1>
-    <!-- TODO Add section for DNE -->
     <h1 v-if="!child">Does not exist</h1>
     <v-layout v-if="child" row wrap>
-      <!-- <v-flex xs12 sm12 md12 lg9 class="px-1"> -->
       <v-flex lg6 sm12 xs12 class="pa-2">
         <ChildProfileCard :child="child" />
       </v-flex>
@@ -44,16 +42,19 @@ export default {
     tasks: [],
   }),
   watch: {
+    // watch child for loading and get child's tasks when loaded
     child(val) {
       if (val) {
         this.getTasks()
       }
     },
+    // watch tasks for loading and get tasks' items when loaded
     tasks(val) {
       if (val.length) this.getTaskItems()
     },
   },
   mounted() {
+    // getting id from route parameter 
     const id = this.$route.params.id
     if (id) {
       this.getChild(id)
@@ -62,6 +63,7 @@ export default {
     }
   },
   methods: {
+    // gets child info from children collection
     getChild(id) {
       this.$fire.firestore
         .collection('children')
@@ -71,6 +73,7 @@ export default {
           else this.child = null
         })
     },
+    // gets tasks subcollection from children collection 
     getTasks() {
       console.log(this.child.id)
       this.$fire.firestore
@@ -81,6 +84,7 @@ export default {
           this.tasks = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         })
     },
+    // gets  items from items collection for each task
     async getTaskItems() {
       if (this.tasks.length < 1) return []
       const items = []
@@ -94,6 +98,7 @@ export default {
       }
       this.items = items
     },
+    // finds specific item by itemID
     getItem(task) {
       return this.items.find((i) => i.id === task.itemID) || {}
     },
