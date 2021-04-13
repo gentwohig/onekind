@@ -7,37 +7,32 @@
     <h1 v-if="!child">Does not exist</h1>
     <v-layout v-if="child" row wrap>
       <!-- <v-flex xs12 sm12 md12 lg9 class="px-1"> -->
-      <v-row>
-        <v-col cols="6">
-          <ChildProfileCard :child="child" />
-        </v-col>
-        <v-col cols="6">
-          <UserProgress :level="$colorNLevel(child.user_points)"/>
-        </v-col>
-      </v-row>
-      <!-- Donation tasks -->
-      <v-container>
-        <v-card-title>Tasks to complete</v-card-title>
-        <v-layout row wrap>
-          <v-flex
-            v-for="task in tasks"
-            :key="task.id"
-            xl2
-            lg3
-            md6
-            sm4
-            xl3
-            class="pa-2"
-          >
-            <TaskCard
-              :child_name="child.first_name"
-              :task="task"
-              :item="getItem(task)"
-            />
-          </v-flex>
-        </v-layout>
-      </v-container>
-      <!-- </v-flex> -->
+      <v-flex lg6 sm12 xs12 class="pa-2">
+        <ChildProfileCard :child="child" />
+      </v-flex>
+      <v-flex lg6 sm12 xs12 class="pa-2">
+        <UserProgress :level="$colorNLevel(child.user_points)" />
+      </v-flex>
+    </v-layout>
+    <!-- Donation tasks -->
+    <v-card-title>Tasks to complete</v-card-title>
+    <v-layout row wrap>
+      <v-flex
+        v-for="task in tasks"
+        :key="task.id"
+        xl2
+        lg3
+        md6
+        sm4
+        xl3
+        class="pa-2"
+      >
+        <TaskCard
+          :child_name="child.first_name"
+          :task="task"
+          :item="getItem(task)"
+        />
+      </v-flex>
     </v-layout>
   </v-container>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-xl">
+  <v-card class="rounded-xl" elevation="5">
     <v-container>
       <v-toolbar flat dense>
         <v-toolbar-title>
