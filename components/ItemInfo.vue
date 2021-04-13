@@ -3,17 +3,15 @@
     <v-container>
       <v-layout fill-height row wrap align-center>
         <v-flex lg6 md12 sm12 xs12 class="pa-2 justify-center d-flex">
-          <div style="max-width: 700px; min-width: 700px">
-            <v-carousel>
-              <v-carousel-item
-                v-for="(image, i) in item.images"
-                :key="i"
-                :src="image"
-                contain
-              >
-              </v-carousel-item>
-            </v-carousel>
-          </div>
+          <v-carousel>
+            <v-carousel-item
+              v-for="(image, i) in item.images"
+              :key="i"
+              :src="image"
+              contain
+            >
+            </v-carousel-item>
+          </v-carousel>
         </v-flex>
         <v-flex lg6 md12 sm12 xs12 class="pa-2">
           <h1>
@@ -28,9 +26,9 @@
             Choose any of the following options and click Send Item to send to
             child.
           </p>
-          <v-btn class="primary mt-10" @click="updateUserLevel"
-            >Send item</v-btn
-          >
+          <v-btn class="primary mt-10" @click="updateUserLevel">
+            Send item
+          </v-btn>
         </v-flex>
       </v-layout>
     </v-container>
