@@ -71,6 +71,7 @@ export default {
     user: {
       handler(val) {
         if (val)
+        // console.log(val.children.length)
           if (val.children)
             if (val.children.length)
               this.$fire.firestore
